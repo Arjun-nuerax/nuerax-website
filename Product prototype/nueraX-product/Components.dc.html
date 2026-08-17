@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,system-ui,sans-serif}
+  :root{
+    --bg:#F8FAFC;--surface:#FFFFFF;--surface-2:#F1F5F9;--surface-3:#E9EEF5;
+    --border:#E2E8F0;--border-strong:#CBD5E1;
+    --ink:#0F172A;--text:#334155;--muted:#64748B;--faint:#94A3B8;
+    --purple:#6366F1;--purple-2:#885CF6;--violet:#7C3AED;
+    --blue:#06B6D4;--cyan:#22D3EE;--pink:#EC4899;--green:#10B981;--orange:#F59E0B;
+    --grad:linear-gradient(135deg,#6366F1 0%,#A855F7 50%,#EC4899 100%);
+    --shadow-sm:0 1px 2px rgba(15,23,42,.06);--shadow-md:0 6px 20px rgba(15,23,42,.08);--shadow-lg:0 18px 50px rgba(15,23,42,.14);
+    --ring:rgba(99,102,241,.4);
+  }
+  [data-theme="dark"]{
+    --bg:#0A0F1E;--surface:#111A2E;--surface-2:#182238;--surface-3:#1E293B;
+    --border:#22304A;--border-strong:#33425F;
+    --ink:#F1F5F9;--text:#CBD5E1;--muted:#94A3B8;--faint:#64748B;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.4);--shadow-md:0 6px 20px rgba(0,0,0,.45);--shadow-lg:0 18px 50px rgba(0,0,0,.6);
+    --ring:rgba(139,92,246,.55);
+  }
+  a{color:var(--purple);text-decoration:none}
+  a:hover{color:var(--violet)}
+  ::selection{background:rgba(99,102,241,.25)}
+  input,select,textarea{font-family:Inter}
+  @keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</helmet>
+<div data-theme="{{ theme }}" style="min-height:100vh;background:var(--bg);color:var(--text);transition:background .3s,color .3s">
+
+  <header style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 40px;background:color-mix(in srgb,var(--surface) 82%,transparent);border-bottom:1px solid var(--border);backdrop-filter:blur(12px)">
+    <a href="index.dc.html" style="display:flex;align-items:center;gap:11px">
+      <img src="assets/nuerax-mark.png" alt="NueraX logo" style="height:32px;width:auto"/>
+      <span style="font-family:Poppins;font-weight:700;font-size:21px;color:var(--ink);letter-spacing:-.02em">nuera<span style="background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent">X</span></span>
+    </a>
+    <nav style="display:flex;gap:2px">
+      <a href="index.dc.html" style="padding:8px 14px;border-radius:10px;font-size:14px;font-weight:500;color:var(--text)">Overview</a>
+      <a href="Foundations.dc.html" style="padding:8px 14px;border-radius:10px;font-size:14px;font-weight:500;color:var(--text)">Foundations</a>
+      <a href="Components.dc.html" style="padding:8px 14px;border-radius:10px;font-size:14px;font-weight:600;color:#fff;background:var(--grad)">Components</a>
+      <a href="Patterns.dc.html" style="padding:8px 14px;border-radius:10px;font-size:14px;font-weight:500;color:var(--text)">Patterns</a>
+      <a href="ArjunAI.dc.html" style="padding:8px 14px;border-radius:10px;font-size:14px;font-weight:500;color:var(--text)">Arjun AI</a>
+    </nav>
+    <button onClick="{{ toggleTheme }}" aria-label="Toggle color theme" style="display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);font-size:13px;font-weight:600;font-family:Inter;cursor:pointer">
+      <sc-if value="{{ isDark }}" hint-placeholder-val="{{ true }}"><span style="display:flex;align-items:center;gap:8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Light</span></sc-if>
+      <sc-if value="{{ isLight }}" hint-placeholder-val="{{ true }}"><span style="display:flex;align-items:center;gap:8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>Dark</span></sc-if>
+    </button>
+  </header>
+
+  <div style="max-width:1220px;margin:0 auto;padding:48px 40px 90px;display:grid;grid-template-columns:190px 1fr;gap:48px">
+    <aside style="position:sticky;top:96px;align-self:start;display:flex;flex-direction:column;gap:2px">
+      <div style="font-family:Poppins;font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);padding:8px 12px">Components</div>
+      <a href="#buttons" style="padding:8px 12px;border-radius:8px;font-size:14px;color:var(--text)">Buttons</a>
+      <a href="#inputs" style="padding:8px 12px;border-radius:8px;font-size:14px;color:var(--text)">Inputs &amp; forms</a>
+      <a href="#cards" style="padding:8px 12px;border-radius:8px;font-size:14px;color:var(--text)">Cards &amp; stats</a>
+      <a href="#badges" style="padding:8px 12px;border-radius:8px;font-size:14px;color:var(--text)">Badges &amp; tags</a>
+      <a href="#charts" style="padding:8px 12px;border-radius:8px;font-size:14px;color:var(--text)">Charts</a>
+    </aside>
+
+    <main style="min-width:0">
+      <h1 style="font-family:Poppins;font-weight:700;font-size:40px;line-height:1.1;letter-spacing:-.02em;color:var(--ink);margin:0">Components</h1>
+      <p style="font-size:16px;color:var(--muted);margin:12px 0 0;max-width:640px">Interactive building blocks — every state is live. Hover, press, type, toggle and switch charts to feel the system in motion.</p>
+
+      <!-- BUTTONS -->
+      <section id="buttons" style="scroll-margin-top:96px;margin-top:52px">
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:20px"><span style="width:8px;height:8px;border-radius:3px;background:var(--purple)"></span><h2 style="font-family:Poppins;font-weight:600;font-size:26px;color:var(--ink);margin:0">Buttons</h2></div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px">
+          <div style="padding:28px;border-radius:20px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm)">
+            <h4 style="font-family:Poppins;font-weight:600;font-size:14px;color:var(--ink);margin:0 0 6px">Primary · gradient</h4>
+            <p style="font-size:12.5px;color:var(--muted);margin:0 0 18px">Reserved for the single most important action per view.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+              <button style="display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border:none;border-radius:12px;background:var(--grad);color:#fff;font-weight:600;font-size:14px;cursor:pointer;box-shadow:var(--shadow-sm);transition:transform .12s,box-shadow .2s,filter .2s" style-hover="filter:brightness(1.06);box-shadow:var(--shadow-md);transform:translateY(-1px)" style-active="transform:translateY(1px);filter:brightness(.96)">Get Started <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+              <button style="display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border:none;border-radius:12px;background:var(--grad);color:#fff;font-weight:600;font-size:14px;cursor:pointer;box-shadow:var(--shadow-md);filter:brightness(1.06);transform:translateY(-1px)">Hover</button>
+              <button style="display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border:none;border-radius:12px;background:var(--grad);color:#fff;font-weight:600;font-size:14px;box-shadow:0 0 0 3px var(--surface),0 0 0 6px var(--ring)">Focus</button>
+              <button disabled style="display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border:none;border-radius:12px;background:var(--grad);color:#fff;font-weight:600;font-size:14px;opacity:.45;cursor:not-allowed">Disabled</button>
+              <button style="display:inline-flex;align-items:center;gap:9px;padding:12px 22px;border:none;border-radius:12px;background:var(--grad);color:#fff;font-weight:600;font-size:14px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" style="animation:spin .8s linear infinite"><path d="M21 12a9 9 0 1 1-6.2-8.5" stroke-linecap="round"/></svg>Loading</button>
+            </div>
+          </div>
+          <div style="padding:28px;border-radius:20px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm)">
+            <h4 style="font-family:Poppins;font-weight:600;font-size:14px;color:var(--ink);margin:0 0 6px">Secondary · ghost · icon</h4>
+            <p style="font-size:12.5px;color:var(--muted);margin:0 0 18px">Supporting and tertiary actions.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+              <button style="display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border:1.5px solid var(--purple);border-radius:12px;background:var(--surface);color:var(--purple);font-weight:600;font-size:14px;cursor:pointer;transition:background .2s" style-hover="background:rgba(99,102,241,.08)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>Upload Mock Test</button>
+              <button style="display:inline-flex;align-items:center;gap:6px;padding:11px 16px;border:none;border-radius:12px;background:transparent;color:var(--purple);font-weight:600;font-size:14px;cursor:pointer;transition:background .2s" style-hover="background:rgba(99,102,241,.08)">Learn More <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+              <button aria-label="Upload" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:none;border-radius:12px;background:var(--grad);color:#fff;cursor:pointer;box-shadow:var(--shadow-sm);transition:transform .12s" style-hover="transform:translateY(-1px)" style-active="transform:translateY(1px)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></button>
+              <button aria-label="Settings" style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid var(--border);border-radius:12px;background:var(--surface-2);color:var(--text);cursor:pointer;transition:background .2s" style-hover="background:var(--surface-3)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.2A1.6 1.6 0 0 0 7 19.4a1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H1a2 2 0 1 1 0-4h.2A1.6 1.6 0 0 0 2.6 7a1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H7a1.6 1.6 0 0 0 1-1.5V1a2 2 0 1 1 4 0v.2A1.6 1.6 0 0 0 17 2.6a1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V7a1.6 1.6 0 0 0 1.5 1H23a2 2 0 1 1 0 4h-.2a1.6 1.6 0 0 0-1.4 1z"/></svg></button>
+            </div>
+            <div style="display:flex;gap:14px;align-items:center;margin-top:18px">
+              <button style="padding:8px 16px;border:none;border-radius:10px;background:var(--grad);color:#fff;font-weight:600;font-size:12.5px;cursor:pointer">Small</button>
+              <button style="padding:14px 26px;border:none;border-radius:14px;background:var(--grad);color:#fff;font-weight:600;font-size:16px;cursor:pointer">Large</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- INPUTS -->
+      <section id="inputs" style="scroll-margin-top:96px;margin-top:56px">
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:20px"><span style="width:8px;height:8px;border-radius:3px;background:var(--blue)"></span><h2 style="font-family:Poppins;font-weight:600;font-size:26px;color:var(--ink);margin:0">Inputs &amp; forms</h2></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+          <div style="padding:28px;border-radius:20px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:18px">
+            <div>
+              <label style="display:block;font-size:12.5px;font-weight:600;color:var(--text);margin-bottom:7px">Full name</label>
+              <input type="text" placeholder="Arjun Kumar" style="width:100%;padding:12px 14px;border:1px solid var(--border-strong);border-radius:12px;background:var(--surface);color:var(--ink);font-size:14px;outline:none;transition:border .2s,box-shadow .2s" style-focus="border-color:var(--purple);box-shadow:0 0 0 3px var(--ring)"/>
+            </div>
+            <div>
+              <label style="display:block;font-size:12.5px;font-weight:600;color:var(--text);margin-bottom:7px">Search</label>
+              <div style="position:relative">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2" stroke-linecap="round" style="position:absolute;left:14px;top:50%;transform:translateY(-50%)"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+                <input type="text" placeholder="Search anything…" style="width:100%;padding:12px 14px 12px 40px;border:1px solid var(--border-strong);border-radius:12px;background:var(--surface-2);color:var(--ink);font-size:14px;outline:none;transition:border .2s,box-shadow .2s" style-focus="border-color:var(--purple);box-shadow:0 0 0 3px var(--ring);background:var(--surface)"/>
+              </div>
+            </div>
+            <div>
+              <label style="display:block;font-size:12.5px;font-weight:600;color:var(--text);margin-bottom:7px">Select subject</label>
+              <div style="position:relative">
+                <select style="width:100%;appearance:none;padding:12px 40px 12px 14px;border:1px solid var(--border-strong);border-radius:12px;background:var(--surface);color:var(--ink);font-size:14px;outline:none;cursor:pointer" style-focus="border-color:var(--purple);box-shadow:0 0 0 3px var(--ring)">
+                  <option>Physics</option><option>Chemistry</option><option>Mathematics</option><option>Biology</option>
+                </select>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none"><path d="M6 9l6 6 6-6"/></svg>
+              </div>
+            </div>
+            <div>
+              <label style="display:block;font-size:12.5px;font-weight:600;color:var(--text);margin-bottom:7px">Error state</label>
+              <input type="text" value="wrong@" style="width:100%;padding:12px 14px;border:1px solid var(--pink);border-radius:12px;background:var(--surface);color:var(--ink);font-size:14px;outline:none;box-shadow:0 0 0 3px rgba(236,72,153,.15)"/>
+              <span style="display:block;font-size:12px;color:var(--pink);margin-top:6px">Enter a valid email address</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:20px">
+            <div style="padding:28px;border-radius:20px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm)">
+              <label style="display:block;font-size:12.5px;font-weight:600;color:var(--text);margin-bottom:9px">Upload mock test</label>
+              <div style="border:1.5px dashed var(--border-strong);border-radius:14px;padding:26px;text-align:center;background:var(--surface-2);cursor:pointer;transition:border .2s,background .2s" style-hover="border-color:var(--purple);background:rgba(99,102,241,.05)">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:8px"><path d="M12 16V4M8 8l4-4 4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+                <div style="font-size:13.5px;font-weight:600;color:var(--ink)">Drop your PDF here or <span style="color:var(--purple)">browse</span></div>
+                <div style="font-size:12px;color:var(--faint);margin-top:4px">PDF up to 25 MB</div>
+              </div>
+            </div>
+            <div style="padding:28px;border-radius:20px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:18px">
+              <div style="display:flex;align-items:center;justify-content:space-between">
+                <span style="font-size:13.5px;font-weight:600;color:var(--ink)">Email notifications</span>
+                <sc-if value="{{ switchOn }}" hint-placeholder-val="{{ true }}">
+                  <button onClick="{{ toggleSwitch }}" aria-label="Toggle notifications" style="width:48px;height:28px;border-radius:999px;border:none;background:var(--grad);cursor:pointer;position:relative;transition:background .2s"><span style="position:absolute;top:3px;left:23px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:var(--shadow-sm);transition:left .2s"></span></button>
+                </sc-if>
+                <sc-if value="{{ switchOff }}" hint-placeholder-val="">
+                  <button onClick="{{ toggleSwitch }}" aria-label="Toggle notifications" style="width:48px;height:28px;border-radius:999px;border:none;background:var(--border-strong);cursor:pointer;position:relative;transition:background .2s"><span style="position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;box-shadow:var(--shadow-sm);transition:left .2s"></span></button>
+                </sc-if>
+              </div>
+              <div style="display:flex;align-items:center;gap:11px">
+                <span style="width:20px;height:20px;border-radius:6px;background:var(--grad);display:inline-flex;align-items:center;justify-content:center"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+                <span style="font-size:13.5px;color:var(--text)">Include weak-topic reminders</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:11px">
+                <span style="width:20px;height:20px;border-radius:50%;border:2px solid var(--purple);display:inline-flex;align-items:center;justify-content:center"><span style="width:9px;height:9px;border-radius:50%;background:var(--purple)"></span></span>
+                <span style="font-size:13.5px;color:var(--text)">Daily study-plan digest</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CARDS -->
+      <section id="cards" style="scroll-margin-top:96px;margin-top:56px">
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:20px"><span style="width:8px;height:8px;border-radius:3px;background:var(--green)"></span><h2 style="font-family:Poppins;font-weight:600;font-size:26px;color:var(--ink);margin:0">Cards &amp; stats</h2></div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px">
+          <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+            <div style="padding:20px;border-radius:18px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm);transition:transform .2s,box-shadow .2s" style-hover="transform:translateY(-3px);box-shadow:var(--shadow-md)">
+              <div style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:11px;background:{{ s.tint }}">{{ s.icon }}</div>
+              <div style="font-size:13px;color:var(--muted);margin-top:14px">{{ s.label }}</div>
+              <div style="font-family:Poppins;font-weight:700;font-size:30px;color:var(--ink);line-height:1.1;margin-top:2px">{{ s.value }}</div>
+              <div style="display:flex;align-items:center;gap:5px;margin-top:8px;font-size:12px;font-weight:600;color:var(--green)"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7h-5M21 7v5"/></svg>{{ s.delta }}<span style="color:var(--faint);font-weight:400">vs last week</span></div>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <!-- BADGES -->
+      <section id="badges" style="scroll-margin-top:96px;margin-top:56px">
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:20px"><span style="width:8px;height:8px;border-radius:3px;background:var(--pink)"></span><h2 style="font-family:Poppins;font-weight:600;font-size:26px;color:var(--ink);margin:0">Badges &amp; tags</h2></div>
+        <div style="padding:28px;border-radius:20px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm);display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+          <span style="padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;color:#059669;background:rgba(16,185,129,.13)">Strong</span>
+          <span style="padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;color:#B45309;background:rgba(245,158,11,.16)">Average</span>
+          <span style="padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;color:#DB2777;background:rgba(236,72,153,.13)">Weak</span>
+          <span style="padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;color:#6366F1;background:rgba(99,102,241,.13)">Improving</span>
+          <span style="padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;color:#0891B2;background:rgba(6,182,212,.13)">Needs Focus</span>
+          <span style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;font-size:13px;font-weight:600;color:#fff;background:var(--grad)"><span style="width:6px;height:6px;border-radius:50%;background:#fff"></span>New</span>
+          <span style="padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600;color:var(--text);background:var(--surface-2);border:1px solid var(--border)">Physics</span>
+          <span style="padding:6px 12px;border-radius:8px;font-size:12px;font-weight:600;color:var(--text);background:var(--surface-2);border:1px solid var(--border)">Class 12</span>
+        </div>
+      </section>
+
+      <!-- CHARTS -->
+      <section id="charts" style="scroll-margin-top:96px;margin-top:56px">
+        <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:20px"><span style="width:8px;height:8px;border-radius:3px;background:var(--violet)"></span><h2 style="font-family:Poppins;font-weight:600;font-size:26px;color:var(--ink);margin:0">Charts &amp; data viz</h2></div>
+        <div style="display:grid;grid-template-columns:1.35fr 1fr;gap:20px">
+          <div style="padding:24px;border-radius:20px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm)">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+              <h4 style="font-family:Poppins;font-weight:600;font-size:16px;color:var(--ink);margin:0">Performance over time</h4>
+              <div style="display:flex;gap:4px;padding:3px;border-radius:10px;background:var(--surface-2)">
+                <sc-for list="{{ periods }}" as="p" hint-placeholder-count="2">
+                  <button onClick="{{ p.onClick }}" style="padding:6px 14px;border:none;border-radius:8px;font-size:12.5px;font-weight:600;cursor:pointer;background:{{ p.bg }};color:{{ p.fg }};transition:all .2s">{{ p.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display:flex;gap:18px;margin-bottom:6px">
+              <button onClick="{{ toggleScore }}" style="display:flex;align-items:center;gap:7px;border:none;background:none;cursor:pointer;font-size:12.5px;color:var(--text);opacity:{{ scoreOpacity }}"><span style="width:11px;height:11px;border-radius:3px;background:#6366F1"></span>Score</button>
+              <button onClick="{{ toggleAcc }}" style="display:flex;align-items:center;gap:7px;border:none;background:none;cursor:pointer;font-size:12.5px;color:var(--text);opacity:{{ accOpacity }}"><span style="width:11px;height:11px;border-radius:3px;background:#06B6D4"></span>Accuracy</button>
+            </div>
+            <svg viewBox="0 0 640 240" style="width:100%;height:auto">
+              <line x1="40" y1="30" x2="40" y2="200" stroke="var(--border)" stroke-width="1"/>
+              <line x1="40" y1="200" x2="620" y2="200" stroke="var(--border)" stroke-width="1"/>
+              <line x1="40" y1="115" x2="620" y2="115" stroke="var(--border)" stroke-width="1" stroke-dasharray="4 5"/>
+              <line x1="40" y1="72" x2="620" y2="72" stroke="var(--border)" stroke-width="1" stroke-dasharray="4 5"/>
+              <line x1="40" y1="158" x2="620" y2="158" stroke="var(--border)" stroke-width="1" stroke-dasharray="4 5"/>
+              <text x="24" y="204" fill="var(--faint)" font-size="11" text-anchor="end">0</text>
+              <text x="24" y="119" fill="var(--faint)" font-size="11" text-anchor="end">50</text>
+              <text x="24" y="35" fill="var(--faint)" font-size="11" text-anchor="end">100</text>
+              <sc-if value="{{ showScore }}" hint-placeholder-val="{{ true }}">
+                <polygon points="{{ scoreArea }}" fill="rgba(99,102,241,.12)"/>
+                <polyline points="{{ scorePts }}" fill="none" stroke="#6366F1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </sc-if>
+              <sc-if value="{{ showAcc }}" hint-placeholder-val="{{ true }}">
+                <polyline points="{{ accPts }}" fill="none" stroke="#06B6D4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </sc-if>
+              <sc-for list="{{ xLabels }}" as="x" hint-placeholder-count="5">
+                <text x="{{ x.x }}" y="222" fill="var(--faint)" font-size="11" text-anchor="middle">{{ x.label }}</text>
+              </sc-for>
+            </svg>
+          </div>
+          <div style="padding:24px;border-radius:20px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm)">
+            <h4 style="font-family:Poppins;font-weight:600;font-size:16px;color:var(--ink);margin:0 0 8px">Subject-wise accuracy</h4>
+            <div style="display:flex;align-items:center;gap:20px">
+              <svg viewBox="0 0 120 120" style="width:130px;height:130px;flex-shrink:0">
+                <circle cx="60" cy="60" r="46" fill="none" stroke="var(--surface-2)" stroke-width="14"/>
+                <sc-for list="{{ donut }}" as="d" hint-placeholder-count="4">
+                  <circle cx="60" cy="60" r="46" fill="none" stroke="{{ d.color }}" stroke-width="14" stroke-linecap="round" stroke-dasharray="{{ d.dash }}" stroke-dashoffset="{{ d.offset }}" transform="rotate(-90 60 60)"/>
+                </sc-for>
+                <text x="60" y="58" text-anchor="middle" font-family="Poppins" font-weight="700" font-size="24" fill="var(--ink)">78%</text>
+                <text x="60" y="74" text-anchor="middle" font-size="10" fill="var(--muted)">Overall</text>
+              </svg>
+              <div style="display:flex;flex-direction:column;gap:9px;flex:1">
+                <sc-for list="{{ donut }}" as="d" hint-placeholder-count="4">
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px"><span style="display:flex;align-items:center;gap:8px;color:var(--text)"><span style="width:9px;height:9px;border-radius:50%;background:{{ d.color }}"></span>{{ d.name }}</span><span style="font-weight:600;color:var(--ink)">{{ d.val }}%</span></div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:20px;padding:24px;border-radius:20px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm)">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px"><h4 style="font-family:Poppins;font-weight:600;font-size:16px;color:var(--ink);margin:0">Weak topics</h4><a href="#charts" style="font-size:13px;font-weight:600">View all</a></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px 40px">
+            <sc-for list="{{ weak }}" as="w" hint-placeholder-count="4">
+              <div>
+                <div style="display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:7px"><span style="color:var(--text);font-weight:500">{{ w.name }}</span><span style="color:var(--muted);font-weight:600">{{ w.val }}%</span></div>
+                <div style="height:8px;border-radius:999px;background:var(--surface-2);overflow:hidden"><div style="height:100%;border-radius:999px;background:linear-gradient(90deg,#EC4899,#F59E0B);width:{{ w.val }}%"></div></div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer style="border-top:1px solid var(--border);padding:28px 40px;text-align:center;color:var(--faint);font-size:13px">NueraX Design System · Components</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { theme:'light', switchOn:true, showScore:true, showAcc:true, period:'month' };
+  componentDidMount(){
+    try { const t = localStorage.getItem('nuerax-theme'); if(t) this.setState({ theme:t }); } catch(e){}
+  }
+  toggleTheme = () => {
+    const t = this.state.theme === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem('nuerax-theme', t); } catch(e){}
+    this.setState({ theme:t });
+  };
+  toggleSwitch = () => this.setState(s => ({ switchOn: !s.switchOn }));
+  toggleScore = () => this.setState(s => ({ showScore: !s.showScore }));
+  toggleAcc = () => this.setState(s => ({ showAcc: !s.showAcc }));
+  setPeriod = (p) => this.setState({ period: p });
+
+  pts(arr){
+    const x0=40, x1=620, y0=200, top=30, w=x1-x0;
+    return arr.map((v,i)=>{
+      const x = x0 + (w*i)/(arr.length-1);
+      const y = y0 - (v/100)*(y0-top);
+      return x.toFixed(1)+','+y.toFixed(1);
+    }).join(' ');
+  }
+  renderVals(){
+    const dark = this.state.theme === 'dark';
+    const svg = React.createElement; // unused marker
+    const dataMonth = { score:[45,58,52,72,82], acc:[40,55,60,68,72], x:['May 5','May 12','May 19','May 26','Jun 2'] };
+    const dataAll   = { score:[30,42,55,60,68,74,82], acc:[28,38,50,58,64,70,72], x:['Jan','Feb','Mar','Apr','May','Jun','Jul'] };
+    const d = this.state.period === 'all' ? dataAll : dataMonth;
+    const scorePts = this.pts(d.score);
+    const accPts = this.pts(d.acc);
+    const scoreArea = '40,200 ' + scorePts + ' 620,200';
+    const xLabels = d.x.map((label,i)=>({ label, x: (40 + (580*i)/(d.x.length-1)).toFixed(1) }));
+
+    // donut
+    const subs = [
+      { name:'Physics', val:82, color:'#6366F1' },
+      { name:'Chemistry', val:76, color:'#EC4899' },
+      { name:'Maths', val:74, color:'#06B6D4' },
+      { name:'Biology', val:80, color:'#F59E0B' },
+    ];
+    const C = 2*Math.PI*46;
+    const total = subs.reduce((a,b)=>a+b.val,0);
+    let acc = 0;
+    const gap = 3;
+    const donut = subs.map(s=>{
+      const frac = s.val/total;
+      const len = Math.max(frac*C - gap, 2);
+      const seg = { name:s.name, val:s.val, color:s.color, dash: len.toFixed(1)+' '+(C-len).toFixed(1), offset: (-acc).toFixed(1) };
+      acc += frac*C;
+      return seg;
+    });
+
+    const mkPeriod = (id,label)=>({ label, onClick:()=>this.setPeriod(id),
+      bg: this.state.period===id ? 'var(--surface)' : 'transparent',
+      fg: this.state.period===id ? 'var(--ink)' : 'var(--muted)' });
+
+    return {
+      theme:this.state.theme, toggleTheme:this.toggleTheme, isDark:dark, isLight:!dark,
+      switchOn:this.state.switchOn, switchOff:!this.state.switchOn, toggleSwitch:this.toggleSwitch,
+      showScore:this.state.showScore, showAcc:this.state.showAcc,
+      toggleScore:this.toggleScore, toggleAcc:this.toggleAcc,
+      scoreOpacity:this.state.showScore?1:.4, accOpacity:this.state.showAcc?1:.4,
+      scorePts, accPts, scoreArea, xLabels,
+      periods:[ mkPeriod('month','This Month'), mkPeriod('all','All Time') ],
+      donut,
+      stats:[
+        { label:'Mock Tests', value:'24', delta:'18%', tint:'rgba(99,102,241,.12)', icon: React.createElement('svg',{width:20,height:20,viewBox:'0 0 24 24',fill:'none',stroke:'#6366F1','strokeWidth':1.9,'strokeLinecap':'round','strokeLinejoin':'round'}, React.createElement('path',{d:'M4 20V10M9 20V4M14 20v-7M19 20V8'})) },
+        { label:'Accuracy', value:'78%', delta:'8%', tint:'rgba(16,185,129,.12)', icon: React.createElement('svg',{width:20,height:20,viewBox:'0 0 24 24',fill:'none',stroke:'#10B981','strokeWidth':1.9,'strokeLinecap':'round','strokeLinejoin':'round'}, React.createElement('circle',{cx:12,cy:12,r:9}), React.createElement('circle',{cx:12,cy:12,r:4})) },
+        { label:'Rank Prediction', value:'2,345', delta:'650', tint:'rgba(236,72,153,.12)', icon: React.createElement('svg',{width:20,height:20,viewBox:'0 0 24 24',fill:'none',stroke:'#EC4899','strokeWidth':1.9,'strokeLinecap':'round','strokeLinejoin':'round'}, React.createElement('path',{d:'M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0z'}), React.createElement('path',{d:'M7 5H4v1a3 3 0 0 0 3 3M17 5h3v1a3 3 0 0 1-3 3'})) },
+        { label:'Study Hours', value:'36.5', delta:'12%', tint:'rgba(245,158,11,.13)', icon: React.createElement('svg',{width:20,height:20,viewBox:'0 0 24 24',fill:'none',stroke:'#F59E0B','strokeWidth':1.9,'strokeLinecap':'round','strokeLinejoin':'round'}, React.createElement('circle',{cx:12,cy:12,r:9}), React.createElement('path',{d:'M12 8v4l3 2'})) },
+      ],
+      weak:[
+        { name:'Rotational Motion', val:45 },
+        { name:'Chemical Bonding', val:48 },
+        { name:'Vector 3D', val:52 },
+        { name:'Human Physiology', val:55 },
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>

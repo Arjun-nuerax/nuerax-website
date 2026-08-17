@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+:root{
+--font-display:'Poppins',system-ui,sans-serif;
+--font-body:'Inter',system-ui,sans-serif;
+--font-mono:ui-monospace,'SFMono-Regular',monospace;
+--text-h1:700 56px/1.05 var(--font-display);
+--text-h2:600 40px/1.1 var(--font-display);
+--text-h3:600 26px/1.2 var(--font-display);
+--text-h4:600 17px/1.3 var(--font-display);
+--text-body:400 15px/1.6 var(--font-body);
+--text-small:400 13px/1.5 var(--font-body);
+--text-label:600 12.5px/1.3 var(--font-body);
+}

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Inter,system-ui,sans-serif}
+  :root{
+    --bg:#F8FAFC;--surface:#FFFFFF;--surface-2:#F1F5F9;--surface-3:#E9EEF5;
+    --border:#E2E8F0;--border-strong:#CBD5E1;
+    --ink:#0F172A;--text:#334155;--muted:#64748B;--faint:#94A3B8;
+    --purple:#6366F1;--purple-2:#885CF6;--violet:#7C3AED;
+    --blue:#06B6D4;--cyan:#22D3EE;--pink:#EC4899;--green:#10B981;--orange:#F59E0B;
+    --grad:linear-gradient(135deg,#6366F1 0%,#A855F7 50%,#EC4899 100%);
+    --shadow-sm:0 1px 2px rgba(15,23,42,.06);--shadow-md:0 6px 20px rgba(15,23,42,.08);--shadow-lg:0 18px 50px rgba(15,23,42,.14);
+    --ring:rgba(99,102,241,.4);
+  }
+  [data-theme="dark"]{
+    --bg:#0A0F1E;--surface:#111A2E;--surface-2:#182238;--surface-3:#1E293B;
+    --border:#22304A;--border-strong:#33425F;
+    --ink:#F1F5F9;--text:#CBD5E1;--muted:#94A3B8;--faint:#64748B;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.4);--shadow-md:0 6px 20px rgba(0,0,0,.45);--shadow-lg:0 18px 50px rgba(0,0,0,.6);
+    --ring:rgba(139,92,246,.55);
+  }
+  a{color:var(--purple);text-decoration:none}
+  a:hover{color:var(--violet)}
+  ::selection{background:rgba(99,102,241,.25)}
+  input{font-family:Inter}
+  @keyframes blink{0%,80%,100%{opacity:.25}40%{opacity:1}}
+  @keyframes ringspin{to{transform:rotate(360deg)}}
+</style>
+</helmet>
+<div data-theme="{{ theme }}" style="min-height:100vh;background:var(--bg);color:var(--text);transition:background .3s,color .3s">
+
+  <header style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 40px;background:color-mix(in srgb,var(--surface) 82%,transparent);border-bottom:1px solid var(--border);backdrop-filter:blur(12px)">
+    <a href="index.dc.html" style="display:flex;align-items:center;gap:11px">
+      <img src="assets/nuerax-mark.png" alt="NueraX logo" style="height:32px;width:auto"/>
+      <span style="font-family:Poppins;font-weight:700;font-size:21px;color:var(--ink);letter-spacing:-.02em">nuera<span style="background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent">X</span></span>
+    </a>
+    <nav style="display:flex;gap:2px">
+      <a href="index.dc.html" style="padding:8px 14px;border-radius:10px;font-size:14px;font-weight:500;color:var(--text)">Overview</a>
+      <a href="Foundations.dc.html" style="padding:8px 14px;border-radius:10px;font-size:14px;font-weight:500;color:var(--text)">Foundations</a>
+      <a href="Components.dc.html" style="padding:8px 14px;border-radius:10px;font-size:14px;font-weight:500;color:var(--text)">Components</a>
+      <a href="Patterns.dc.html" style="padding:8px 14px;border-radius:10px;font-size:14px;font-weight:500;color:var(--text)">Patterns</a>
+      <a href="ArjunAI.dc.html" style="padding:8px 14px;border-radius:10px;font-size:14px;font-weight:600;color:#fff;background:var(--grad)">Arjun AI</a>
+    </nav>
+    <button onClick="{{ toggleTheme }}" aria-label="Toggle color theme" style="display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:10px;border:1px solid var(--border);background:var(--surface-2);color:var(--text);font-size:13px;font-weight:600;font-family:Inter;cursor:pointer">
+      <sc-if value="{{ isDark }}" hint-placeholder-val="{{ true }}"><span style="display:flex;align-items:center;gap:8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>Light</span></sc-if>
+      <sc-if value="{{ isLight }}" hint-placeholder-val="{{ true }}"><span style="display:flex;align-items:center;gap:8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>Dark</span></sc-if>
+    </button>
+  </header>
+
+  <div style="max-width:1220px;margin:0 auto;padding:48px 40px 90px">
+    <h1 style="font-family:Poppins;font-weight:700;font-size:40px;line-height:1.1;letter-spacing:-.02em;color:var(--ink);margin:0">Arjun AI</h1>
+    <p style="font-size:16px;color:var(--muted);margin:12px 0 0;max-width:660px">The face of NueraX — a friendly AI mentor who tracks weak topics, analyses mock tests and answers doubts. Try the live chat below.</p>
+
+    <!-- HERO -->
+    <div style="display:grid;grid-template-columns:280px 1fr 260px;gap:28px;margin-top:36px;align-items:center">
+      <div style="display:flex;flex-direction:column;align-items:center;padding:28px;border-radius:24px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm)">
+        <div style="position:relative;width:180px;height:180px">
+          <div style="position:absolute;inset:-5px;border-radius:50%;background:conic-gradient(from 0deg,#6366F1,#EC4899,#06B6D4,#6366F1);animation:ringspin 8s linear infinite"></div>
+          <img src="assets/arjun-avatar.jpg" alt="Arjun AI avatar" style="position:absolute;inset:5px;width:170px;height:170px;border-radius:50%;object-fit:cover;border:4px solid var(--surface)"/>
+        </div>
+        <div style="font-family:Poppins;font-weight:700;font-size:22px;color:var(--ink);margin-top:20px">Arjun AI</div>
+        <div style="font-size:13.5px;color:var(--muted);margin-top:2px">Your AI Study Companion</div>
+        <div style="width:120px;height:3px;border-radius:2px;background:var(--grad);margin-top:12px"></div>
+      </div>
+
+      <div>
+        <h4 style="font-family:Poppins;font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin:0 0 14px">Avatar variants</h4>
+        <div style="display:flex;gap:20px;flex-wrap:wrap">
+          <div style="text-align:center"><div style="width:96px;height:96px;border-radius:50%;padding:3px;background:var(--grad)"><img src="assets/arjun-avatar.jpg" style="width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid var(--surface)"/></div><div style="font-size:12px;color:var(--muted);margin-top:8px">Default</div></div>
+          <div style="text-align:center"><div style="width:96px;height:96px;border-radius:50%;background:#0A0F1E;padding:3px"><img src="assets/arjun-avatar.jpg" style="width:100%;height:100%;border-radius:50%;object-fit:cover"/></div><div style="font-size:12px;color:var(--muted);margin-top:8px">Dark BG</div></div>
+          <div style="text-align:center"><div style="width:96px;height:96px;border-radius:50%;background:#F1F5F9;padding:3px;border:1px solid var(--border)"><img src="assets/arjun-avatar.jpg" style="width:100%;height:100%;border-radius:50%;object-fit:cover"/></div><div style="font-size:12px;color:var(--muted);margin-top:8px">Light BG</div></div>
+          <div style="text-align:center"><div style="width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,#7C3AED,#06B6D4);padding:3px"><img src="assets/arjun-avatar.jpg" style="width:100%;height:100%;border-radius:50%;object-fit:cover"/></div><div style="font-size:12px;color:var(--muted);margin-top:8px">Gradient BG</div></div>
+        </div>
+        <h4 style="font-family:Poppins;font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin:26px 0 12px">Mood &amp; personality</h4>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <span style="padding:7px 16px;border-radius:999px;font-size:13px;font-weight:600;color:#059669;background:rgba(16,185,129,.13)">Friendly</span>
+          <span style="padding:7px 16px;border-radius:999px;font-size:13px;font-weight:600;color:#6366F1;background:rgba(99,102,241,.13)">Smart</span>
+          <span style="padding:7px 16px;border-radius:999px;font-size:13px;font-weight:600;color:#DB2777;background:rgba(236,72,153,.13)">Encouraging</span>
+          <span style="padding:7px 16px;border-radius:999px;font-size:13px;font-weight:600;color:#0891B2;background:rgba(6,182,212,.13)">Supportive</span>
+        </div>
+        <p style="font-size:14px;color:var(--muted);margin:16px 0 0;font-style:italic">“A friend, mentor &amp; guide for every JEE / NEET aspirant.”</p>
+      </div>
+
+      <div style="padding:22px;border-radius:24px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm)">
+        <h4 style="font-family:Poppins;font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin:0 0 16px">Brand elements</h4>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;align-items:center;gap:12px"><img src="assets/nuerax-mark.png" style="width:38px;height:auto"/><span style="font-size:13.5px;color:var(--text)">NueraX butterfly</span></div>
+          <div style="display:flex;align-items:center;gap:12px"><span style="display:flex;gap:5px"><span style="width:16px;height:16px;border-radius:50%;background:#6366F1"></span><span style="width:16px;height:16px;border-radius:50%;background:#EC4899"></span><span style="width:16px;height:16px;border-radius:50%;background:#06B6D4"></span></span><span style="font-size:13.5px;color:var(--text)">Brand colors</span></div>
+          <div style="display:flex;align-items:center;gap:12px"><span style="width:38px;height:38px;border-radius:11px;background:rgba(99,102,241,.12);display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 3.7L17 8l-3.4 1.3L12 13l-1.6-3.7L7 8l3.4-1.3z"/><path d="M18 14l.8 1.9L21 17l-2.2.8L18 20l-.8-2.2L15 17l2.2-.8z"/></svg></span><span style="font-size:13.5px;color:var(--text)">AI spark</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHAT -->
+    <h2 style="font-family:Poppins;font-weight:600;font-size:24px;color:var(--ink);margin:52px 0 18px">Doubt solver — live chat</h2>
+    <div style="display:grid;grid-template-columns:1fr 320px;gap:20px">
+      <div style="border-radius:22px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow-md);background:var(--surface);display:flex;flex-direction:column;height:560px">
+        <div style="display:flex;align-items:center;gap:12px;padding:16px 22px;border-bottom:1px solid var(--border)">
+          <div style="position:relative"><img src="assets/arjun-avatar.jpg" style="width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid transparent;background:var(--grad);padding:2px"/><span style="position:absolute;bottom:1px;right:1px;width:11px;height:11px;border-radius:50%;background:#10B981;border:2px solid var(--surface)"></span></div>
+          <div><div style="font-family:Poppins;font-weight:600;font-size:15px;color:var(--ink)">Arjun AI</div><div style="font-size:12px;color:#10B981;font-weight:500">● Online</div></div>
+        </div>
+
+        <div ref="{{ scrollRef }}" style="flex:1;overflow-y:auto;padding:22px;display:flex;flex-direction:column;gap:16px">
+          <sc-for list="{{ messages }}" as="m" hint-placeholder-count="3">
+            <sc-if value="{{ m.isUser }}" hint-placeholder-val="">
+              <div style="align-self:flex-end;max-width:76%"><div style="padding:12px 16px;border-radius:16px 16px 4px 16px;background:var(--grad);color:#fff;font-size:14px;line-height:1.55">{{ m.text }}</div><div style="text-align:right;font-size:11px;color:var(--faint);margin-top:5px">{{ m.time }}</div></div>
+            </sc-if>
+            <sc-if value="{{ m.isBot }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;gap:10px;max-width:82%">
+                <img src="assets/arjun-avatar.jpg" style="width:30px;height:30px;border-radius:50%;object-fit:cover;flex-shrink:0"/>
+                <div><div style="padding:12px 16px;border-radius:4px 16px 16px 16px;background:var(--surface-2);color:var(--text);font-size:14px;line-height:1.6;white-space:pre-wrap">{{ m.text }}</div><div style="font-size:11px;color:var(--faint);margin-top:5px">{{ m.time }}</div></div>
+              </div>
+            </sc-if>
+          </sc-for>
+          <sc-if value="{{ typing }}" hint-placeholder-val="">
+            <div style="display:flex;gap:10px"><img src="assets/arjun-avatar.jpg" style="width:30px;height:30px;border-radius:50%;object-fit:cover"/><div style="display:flex;align-items:center;gap:5px;padding:14px 16px;border-radius:4px 16px 16px 16px;background:var(--surface-2)"><span style="width:7px;height:7px;border-radius:50%;background:var(--faint);animation:blink 1.2s infinite"></span><span style="width:7px;height:7px;border-radius:50%;background:var(--faint);animation:blink 1.2s infinite .2s"></span><span style="width:7px;height:7px;border-radius:50%;background:var(--faint);animation:blink 1.2s infinite .4s"></span></div></div>
+          </sc-if>
+        </div>
+
+        <div style="padding:14px 18px;border-top:1px solid var(--border)">
+          <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">
+            <sc-for list="{{ topics }}" as="t" hint-placeholder-count="4">
+              <button onClick="{{ t.onClick }}" style="padding:6px 13px;border-radius:999px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:12.5px;font-weight:500;cursor:pointer;transition:all .18s" style-hover="border-color:var(--purple);color:var(--purple)">{{ t.label }}</button>
+            </sc-for>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:6px 6px 6px 16px;border:1px solid var(--border-strong);border-radius:14px;background:var(--surface-2)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M12 3l1.6 3.7L17 8l-3.4 1.3L12 13l-1.6-3.7L7 8l3.4-1.3z"/></svg>
+            <input type="text" value="{{ input }}" onInput="{{ onInput }}" onKeyDown="{{ onKey }}" placeholder="Ask any doubt…" style="flex:1;border:none;background:none;outline:none;font-size:14px;color:var(--ink)"/>
+            <button onClick="{{ onSend }}" aria-label="Send" style="width:38px;height:38px;border:none;border-radius:11px;background:var(--grad);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div style="padding:20px;border-radius:20px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm)">
+          <h4 style="font-family:Poppins;font-weight:600;font-size:14px;color:var(--ink);margin:0 0 14px">Suggested prompts</h4>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <sc-for list="{{ prompts }}" as="p" hint-placeholder-count="4">
+              <button onClick="{{ p.onClick }}" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 14px;border:1px solid var(--border);border-radius:12px;background:var(--surface);color:var(--text);font-size:13px;text-align:left;cursor:pointer;transition:all .18s" style-hover="border-color:var(--purple);background:rgba(99,102,241,.05)"><span>{{ p.label }}</span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--faint)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            </sc-for>
+          </div>
+        </div>
+        <div style="padding:20px;border-radius:20px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--shadow-sm)">
+          <h4 style="font-family:Poppins;font-weight:600;font-size:14px;color:var(--ink);margin:0 0 14px">Feature highlights</h4>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div><span style="display:inline-flex;width:34px;height:34px;border-radius:10px;background:rgba(99,102,241,.12);align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6366F1" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></span><div style="font-size:13px;font-weight:600;color:var(--ink);margin-top:9px">Instant Answers</div><div style="font-size:11.5px;color:var(--muted);line-height:1.45;margin-top:2px">Step-by-step in seconds.</div></div>
+            <div><span style="display:inline-flex;width:34px;height:34px;border-radius:10px;background:rgba(6,182,212,.12);align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#06B6D4" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 3 3 6 3s6-2 6-3v-5"/></svg></span><div style="font-size:13px;font-weight:600;color:var(--ink);margin-top:9px">Concept Clarity</div><div style="font-size:11.5px;color:var(--muted);line-height:1.45;margin-top:2px">Explanations tailored to you.</div></div>
+            <div><span style="display:inline-flex;width:34px;height:34px;border-radius:10px;background:rgba(245,158,11,.13);align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10c1 1 1 2 1 3h6c0-1 0-2 1-3a6 6 0 0 0-4-10z"/></svg></span><div style="font-size:13px;font-weight:600;color:var(--ink);margin-top:9px">Smart Hints</div><div style="font-size:11.5px;color:var(--muted);line-height:1.45;margin-top:2px">Guides without giving it away.</div></div>
+            <div><span style="display:inline-flex;width:34px;height:34px;border-radius:10px;background:rgba(16,185,129,.12);align-items:center;justify-content:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div style="font-size:13px;font-weight:600;color:var(--ink);margin-top:9px">24/7 Support</div><div style="font-size:11.5px;color:var(--muted);line-height:1.45;margin-top:2px">Always here when you need it.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer style="border-top:1px solid var(--border);padding:28px 40px;text-align:center;color:var(--faint);font-size:13px">NueraX Design System · Arjun AI</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = {
+    theme:'light', input:'', typing:false,
+    messages:[
+      { role:'bot', text:"Hi Arjun! 👋 I'm Arjun AI, your study companion. Ask me any doubt, or tap a suggested prompt to begin.", time:'11:24 AM' },
+      { role:'user', text:"Explain Kirchhoff's Voltage Law with an example.", time:'11:25 AM' },
+      { role:'bot', text:"Sure! Kirchhoff's Voltage Law (KVL) says the sum of all voltages around any closed loop is zero.\n\nExample: in a loop with a 10V battery and two resistors dropping V₁ and V₂:\n+10 − V₁ − V₂ = 0  ⟹  10 = V₁ + V₂\n\nWant me to solve a numerical on this?", time:'11:25 AM' },
+    ],
+  };
+  scrollRef = React.createRef();
+  componentDidMount(){
+    try { const t = localStorage.getItem('nuerax-theme'); if(t) this.setState({ theme:t }); } catch(e){}
+    this.scrollToEnd();
+  }
+  componentDidUpdate(){ this.scrollToEnd(); }
+  scrollToEnd(){ const el = this.scrollRef.current; if(el) el.scrollTop = el.scrollHeight; }
+  toggleTheme = () => {
+    const t = this.state.theme === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem('nuerax-theme', t); } catch(e){}
+    this.setState({ theme:t });
+  };
+  now(){ return new Date().toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' }); }
+  reply(q){
+    const t = q.toLowerCase();
+    if(t.includes('kirchhoff')||t.includes('voltage')) return "KVL: the algebraic sum of voltages around a closed loop is zero.\nFor a 10V source with drops V₁, V₂: 10 = V₁ + V₂. Assign signs consistently (drop = negative going with current) and solve.";
+    if(t.includes('wrong')||t.includes('mistake')) return "Looking at your last mock — most errors cluster in Rotational Motion and Chemical Bonding. Two were silly sign errors, one was a concept gap in torque direction. Shall I build a 20-min revision set?";
+    if(t.includes('hint')) return "Here's a nudge, not the answer 🙂 — first identify what's conserved in this system (energy? momentum?). Write that equation before touching the numbers. Try it and tell me what you get.";
+    if(t.includes('summar')) return "In one line: it's about applying conservation laws at the boundary and checking units. Want the 3-bullet version for your notes?";
+    if(t.includes('similar')) return "Here's a similar one: a 12V battery with three series resistors (2Ω, 3Ω, 1Ω). Find the current, then the drop across each. Give it a shot — I'll check your working.";
+    if(t.includes('step')) return "Let's break it down:\n1) List the knowns and the unknown.\n2) Pick the governing law.\n3) Substitute, keeping units.\n4) Sanity-check the magnitude.\nSend me the specific problem and I'll do it with you.";
+    return "Great question! Here's how I'd approach it:\n1) Identify the core concept being tested.\n2) Recall the key formula and its assumptions.\n3) Work through it step by step.\nWant me to solve a full practice problem on this?";
+  }
+  send(text){
+    const q = (text != null ? text : this.state.input).trim();
+    if(!q) return;
+    const userMsg = { role:'user', text:q, time:this.now() };
+    this.setState(s => ({ messages:[...s.messages, userMsg], input:'', typing:true }));
+    clearTimeout(this._t);
+    this._t = setTimeout(() => {
+      const botMsg = { role:'bot', text:this.reply(q), time:this.now() };
+      this.setState(s => ({ messages:[...s.messages, botMsg], typing:false }));
+    }, 900);
+  }
+  onInput = (e) => this.setState({ input: e.target.value });
+  onKey = (e) => { if(e.key === 'Enter'){ e.preventDefault(); this.send(); } };
+  onSend = () => this.send();
+  renderVals(){
+    const dark = this.state.theme === 'dark';
+    const chip = (label) => ({ label, onClick:()=>this.send(label) });
+    return {
+      theme:this.state.theme, toggleTheme:this.toggleTheme, isDark:dark, isLight:!dark,
+      scrollRef:this.scrollRef,
+      input:this.state.input, typing:this.state.typing,
+      onInput:this.onInput, onKey:this.onKey, onSend:this.onSend,
+      messages:this.state.messages.map(m => ({ text:m.text, time:m.time, isUser:m.role==='user', isBot:m.role==='bot' })),
+      topics:[ chip('Electric Circuits'), chip('Thermodynamics'), chip('Organic Chemistry'), chip('Vector 3D'), chip('Maths') ],
+      prompts:[
+        chip('Explain this question step by step'),
+        chip('Help me with a similar problem'),
+        chip('Where did I go wrong?'),
+        chip('Give me a hint, not the answer'),
+        chip('Summarize this concept'),
+      ],
+    };
+  }
+}
+</script>
+</body>
+</html>
