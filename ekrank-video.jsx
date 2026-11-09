@@ -250,11 +250,11 @@ function useSound(T, playing, voiceOn) {
       voice.current = ok.find(x => /en-IN/i.test(x.lang) && FEM.test(x.name)) || ok.find(x => /en-IN/i.test(x.lang)) || ok.find(x => FEM.test(x.name)) || ok[0] || null; }; pick(); speechSynthesis.onvoiceschanged = pick; return () => speechSynthesis.cancel(); }, []);
   React.useEffect(() => {
     const a = ref.current; if (!a) return;
-    a.volume = voiceOn ? 0.35 : 0.8;
+    const g = Math.max(0, Math.min(1, window.__ekGain ?? 1)); a.volume = (voiceOn ? 0.35 : 0.8) * g;
     if (Math.abs(a.currentTime - T) > 0.25) a.currentTime = Math.max(0, T);
     if (playing && a.paused) a.play().catch(() => {}); if (!playing && !a.paused) a.pause();
     if (!playing) { speechSynthesis.cancel(); last.current = T; return; }
-    if (voiceOn) VO.forEach(([at, line]) => { if (last.current < at && T >= at && T - at < 0.5) { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(line); if (voice.current) u.voice = voice.current; u.lang = 'en-IN'; u.rate = 0.96; u.pitch = 1.18; u.volume = 1; speechSynthesis.speak(u); } });
+    if (voiceOn) VO.forEach(([at, line]) => { if (last.current < at && T >= at && T - at < 0.5) { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(line); if (voice.current) u.voice = voice.current; u.lang = 'en-IN'; u.rate = 0.96; u.pitch = 1.18; u.volume = g; if (g > 0.05) speechSynthesis.speak(u); } });
     last.current = T;
   });
   return ref;

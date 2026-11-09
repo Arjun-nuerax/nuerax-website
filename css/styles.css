@@ -341,3 +341,5 @@ img{max-width:100%}
 .store span{display:grid;line-height:1.1;text-align:left}
 .store small{font-size:10.5px;letter-spacing:.02em;color:var(--text-d)}
 .store b{font-family:var(--display);font-size:17px;font-weight:600}
+.film{transition:opacity 600ms var(--ease)}
+.film.fading{opacity:0}

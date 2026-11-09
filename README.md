@@ -34,7 +34,7 @@ Then open http://localhost:8080 (or the port shown).
   On submit it: emails the lead via FormSubmit to `leadEmail`, optionally POSTs to `leadWebhook`, opens WhatsApp
   with the details pre-filled, fires a GTM `generate_lead` event, and shows a confirmation. Honeypot field blocks simple bots.
 - **"One school day" tabs** — auto-advance every 6s with progress bars; stop on click; arrow-key navigation; pause off-screen; respect reduced-motion.
-- **Product film** — plays inline over the hero screenshot; closes on ✕, Esc, scrolling away, or after 60s.
+- **Product film** — plays inline over the hero screenshot and always starts from the beginning. It keeps playing while the visitor scrolls; the sound fades as it leaves the screen, and once it's fully out of view the music and voice-over fade out and it closes. Also closes on ✕ or Esc. At the end it holds on the pricing/demo end card.
 - **FAQ accordion**, **sticky mobile CTA** (phones only, hides near the form), **header** that turns light on scroll.
 - **Analytics** — GTM container `GTM-MKQQ5BG4`; every `[data-cta]` click pushes `cta_click`; also `video_start`, `faq_open`, `generate_lead`.
 - SEO: title/description, canonical, Open Graph/Twitter cards, JSON-LD (Organization + SoftwareApplication), sitemap.

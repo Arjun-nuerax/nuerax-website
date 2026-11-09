@@ -37,37 +37,87 @@
   onScroll();
 
   /* ---------- Hero product film ---------- */
-  var shot = $('#hero-shot'), playBtn = $('#play-film');
-  var filmTimer, filmScroll, filmY0;
-  function closeFilm() {
-    var f = $('.film', shot), c = $('.film-close', shot);
-    if (f) f.remove(); if (c) c.remove();
+  /* Keeps playing while the visitor scrolls. As the film slides out of view the
+     sound fades with it; once it is (almost) fully off-screen, audio and voice-over
+     fade to silence and the film is closed, leaving the play button ready again. */
+  var shot = $('#hero-shot'), playBtn = $('#play-film'), heroShot = shot.closest('.hero-shot');
+  var film = null, closeBtn = null, io = null, stopping = false, fadeRaf = 0, gain = 1;
+  var STOP_AT = 0.1;          // visible share at which the film stops
+  var FULL_AT = 0.6;          // visible share at/above which volume is full
+  function filmWin() { try { return film && film.contentWindow; } catch (e) { return null; } }
+  function setGain(g) {
+    gain = Math.max(0, Math.min(1, g));
+    var w = filmWin();
+    if (!w) return;
+    try {
+      w.__ekGain = gain; // read by the film on every frame (music + new voice lines)
+      Array.prototype.forEach.call(w.document.querySelectorAll('video,audio'), function (m) {
+        m.volume = Math.min(m.volume, 0.8 * gain + 0.0001);
+      });
+    } catch (e) {}
+  }
+  function silence() {
+    var w = filmWin();
+    try {
+      if (w && w.speechSynthesis) w.speechSynthesis.cancel();
+      if (w) Array.prototype.forEach.call(w.document.querySelectorAll('video,audio'), function (m) { m.pause(); });
+    } catch (e) {}
+  }
+  function teardown() {
+    cancelAnimationFrame(fadeRaf);
+    silence();
+    if (io) { io.disconnect(); io = null; }
+    if (film) film.remove();
+    if (closeBtn) closeBtn.remove();
+    film = closeBtn = null; stopping = false; gain = 1;
+    heroShot.classList.remove('playing');
     playBtn.hidden = false;
-    shot.closest('.hero-shot').classList.remove('playing');
-    clearTimeout(filmTimer);
-    window.removeEventListener('scroll', filmScroll);
+  }
+  function stopFilm(reason, ms) {
+    if (!film || stopping) return;
+    stopping = true;
+    dl.push({ event: 'video_stop', video_title: 'ekRank Teacher App film', reason: reason });
+    var w = filmWin();
+    try { if (w && w.speechSynthesis) w.speechSynthesis.cancel(); } catch (e) {} // voice can't fade; end it first
+    var dur = reduceMotion ? 0 : (ms == null ? 700 : ms), from = gain, t0 = performance.now();
+    film.classList.add('fading');
+    (function step(now) {
+      var p = dur ? Math.min(1, (now - t0) / dur) : 1;
+      setGain(from * (1 - p) * (1 - p));
+      if (p < 1) fadeRaf = requestAnimationFrame(step); else teardown();
+    })(t0);
   }
   playBtn.addEventListener('click', function () {
-    var f = document.createElement('iframe');
-    f.className = 'film';
-    f.src = 'film.html?embed=1';
-    f.title = 'ekRank Teacher App product film';
-    f.allow = 'autoplay';
-    var c = document.createElement('button');
-    c.type = 'button'; c.className = 'film-close'; c.setAttribute('aria-label', 'Close film');
-    c.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F1F5F9" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
-    c.addEventListener('click', function () { closeFilm(); playBtn.focus(); });
-    shot.appendChild(f); shot.appendChild(c);
+    if (film) return;
+    film = document.createElement('iframe');
+    film.className = 'film';
+    film.src = 'film.html?embed=1';
+    film.title = 'ekRank Teacher App product film';
+    film.allow = 'autoplay';
+    closeBtn = document.createElement('button');
+    closeBtn.type = 'button'; closeBtn.className = 'film-close'; closeBtn.setAttribute('aria-label', 'Close film');
+    closeBtn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F1F5F9" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+    closeBtn.addEventListener('click', function () { stopFilm('close', 350); playBtn.focus(); });
+    shot.appendChild(film); shot.appendChild(closeBtn);
     playBtn.hidden = true;
-    shot.closest('.hero-shot').classList.add('playing');
-    c.focus({ preventScroll: true });
+    heroShot.classList.add('playing');
+    closeBtn.focus({ preventScroll: true });
     dl.push({ event: 'video_start', video_title: 'ekRank Teacher App film' });
-    filmY0 = window.scrollY;
-    filmScroll = function () { if (Math.abs(window.scrollY - filmY0) > 60) closeFilm(); };
-    window.addEventListener('scroll', filmScroll, { passive: true });
-    filmTimer = setTimeout(closeFilm, 60000);
+    gain = 1;
+    if ('IntersectionObserver' in window) {
+      var th = []; for (var i = 0; i <= 20; i++) th.push(i / 20);
+      io = new IntersectionObserver(function (es) {
+        if (!film || stopping) return;
+        var r = es[es.length - 1].intersectionRatio;
+        if (r <= STOP_AT) { stopFilm('scrolled_away'); return; }
+        setGain(Math.min(1, (r - STOP_AT) / (FULL_AT - STOP_AT)));
+      }, { threshold: th });
+      io.observe(shot);
+    }
   });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && $('.film', shot)) { closeFilm(); playBtn.focus(); } });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && film) { stopFilm('escape', 350); playBtn.focus(); } });
+  document.addEventListener('visibilitychange', function () { if (document.hidden) silence(); });
+  window.addEventListener('pagehide', silence);
 
   /* ---------- "One school day" tabs (auto-advance every 6s) ---------- */
   var DAY = [
