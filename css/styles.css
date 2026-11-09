@@ -444,3 +444,19 @@ img{max-width:100%}
   .tab{flex:0 0 auto;min-width:112px;min-height:58px;padding:10px 14px;scroll-snap-align:start}
   .tab .tt{font-size:15px}
 }
+
+/* Small phones (≤400px): tidy hero pill and price strip */
+@media (max-width:400px){
+  .pill{font-size:12px;gap:8px;padding:5px 12px 5px 5px}
+  .pill b{font-size:11px;padding:3px 8px}
+}
+@media (max-width:560px){
+  .price-strip{display:grid;justify-items:center;gap:10px;width:100%;max-width:360px;padding:16px}
+  .ps-amt{flex-wrap:wrap;justify-content:center;column-gap:8px;row-gap:2px}
+  .ps-amt small{flex-basis:100%;text-align:center}
+}
+
+/* Touch-friendly tap targets (≥44px) for small text links */
+.logo,.signin,.leaders .link{min-height:44px;display:inline-flex;align-items:center}
+.footer nav a,.footer .contact a{display:inline-flex;align-items:center;min-height:44px}
+@media (max-width:759px){.footer .wrap{row-gap:12px}.footer nav,.footer .contact{column-gap:20px;row-gap:0}}
