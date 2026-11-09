@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /_design-source/
+Disallow: /film.html
+
+Sitemap: https://ekrank.com/sitemap.xml
