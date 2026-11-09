@@ -149,6 +149,11 @@
     $('#day-h3').textContent = DAY[i].h;
     $('#day-d').textContent = DAY[i].d;
     imgs.forEach(function (im, j) { im.classList.toggle('on', j === i); });
+    // On phones the tabs scroll sideways: keep the active one in view (without moving the page)
+    if (tabsEl.scrollWidth > tabsEl.clientWidth + 4) {
+      var left = tabs[i].offsetLeft - tabs[0].offsetLeft;
+      tabsEl.scrollTo({ left: Math.max(0, left), behavior: reduceMotion ? 'auto' : 'smooth' });
+    }
   }
   function stopAuto() { auto = false; clearInterval(dayTimer); tabs.forEach(function (b) { b.classList.remove('running'); }); }
   function startAuto() {

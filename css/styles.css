@@ -343,3 +343,104 @@ img{max-width:100%}
 .store b{font-family:var(--display);font-size:17px;font-weight:600}
 .film{transition:opacity 600ms var(--ease)}
 .film.fading{opacity:0}
+
+/* ===================================================================
+   Visual balance pass — sections sized to the screen, one type scale
+   =================================================================== */
+:root{
+  --sec-y:clamp(56px,9vh,104px);                 /* section top/bottom space, follows screen height */
+  --head-gap:clamp(24px,4.5vh,44px);             /* heading block → content */
+  --h2-size:clamp(30px,min(3.4vw,5.6vh),48px);   /* one heading size for every section */
+}
+.h2,.h2-sm,.students-head h2,.demo h2{font-size:var(--h2-size);line-height:1.08;letter-spacing:-.03em}
+.eyebrow{margin-bottom:12px}
+
+/* Hero: headline, CTAs and price fit the first screen, product peeks below */
+.hero{padding-top:calc(64px + clamp(28px,7vh,80px))}
+.pill{margin-bottom:clamp(16px,3vh,28px)}
+.hero h1{font-size:clamp(40px,min(7vw,10.5vh),96px)}
+.hero-sub{margin-top:clamp(16px,3vh,28px)}
+.hero-ctas{margin-top:clamp(20px,4vh,36px)}
+.assure{margin-top:clamp(14px,2.4vh,22px)}
+.price-strip{margin:clamp(18px,3vh,28px) auto 0;display:inline-flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 22px;padding:10px 12px 10px 20px;border-radius:999px;background:rgba(13,20,38,.85);border:1px solid var(--border-dark-2);box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.ps-amt{display:inline-flex;align-items:baseline;gap:8px;font-size:14px;color:var(--text-d)}
+.ps-amt small{font-size:11.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--faint)}
+.ps-amt b{font-family:var(--display);font-size:26px;font-weight:600;letter-spacing:-.03em;line-height:1}
+.ps-free{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;font-weight:600;color:#34D399;padding-left:22px;border-left:1px solid var(--border-dark-2)}
+.price-strip .link-arrow{min-height:40px;padding:0 16px;border-radius:999px;background:rgba(136,92,246,.16)}
+.price-strip .link-arrow:hover{background:rgba(136,92,246,.28)}
+@media (max-width:560px){.price-strip{border-radius:20px;padding:14px 16px}.ps-free{border-left:none;padding-left:0}}
+.hero-shot{margin-top:clamp(36px,7vh,72px)}
+
+/* Section rhythm */
+.day,.pricing{padding-top:var(--sec-y);padding-bottom:var(--sec-y)}
+.features{padding-bottom:var(--sec-y)}
+.students,.leaders{padding-top:var(--sec-y);padding-bottom:var(--sec-y)}
+.setup,.faq{padding-bottom:var(--sec-y)}
+.demo{padding-top:var(--sec-y);padding-bottom:var(--sec-y)}
+.belief{padding-top:clamp(72px,12vh,128px);padding-bottom:clamp(72px,12vh,128px)}
+.belief p{font-size:clamp(28px,min(4.2vw,7vh),58px)}
+.sec-head{margin-bottom:var(--head-gap);align-items:end}
+.students-head{margin-bottom:var(--head-gap)}
+.pricing-head{margin-bottom:var(--head-gap)}
+
+/* One school day: CTA lives in the panel, panel sized to the screen */
+.tab{min-height:64px;padding:12px 16px}
+.tabs{margin-bottom:16px}
+.panel{padding:clamp(20px,3vw,40px)}
+@media (min-width:960px){.panel{grid-template-columns:minmax(0,5fr) minmax(0,7fr)}}
+.panel-shot img{max-height:calc(100vh - 360px);min-height:220px;width:100%;object-fit:contain;object-position:center top;background:#fff}
+.panel-cta{margin-top:10px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 16px}
+.panel-cta span{font-size:14px;color:var(--faint)}
+
+/* Features: heading + CTA on one row, bento as one tall card + 2×2 */
+.feat-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:20px 32px;margin-bottom:var(--head-gap)}
+.features .feat-head .h2{margin:0;max-width:900px}
+.card-copy{padding:24px 24px 0;gap:6px}
+.card h3{font-size:19px}
+.card p{font-size:15px}
+.card-img{padding:20px 0 0 24px}
+.card-img>div{aspect-ratio:16/9}
+@media (min-width:640px) and (max-width:999px){.c1{grid-column:span 2}.c5{grid-column:auto}}
+@media (min-width:1000px){
+  .bento{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr) minmax(0,1fr)}
+  .c1{grid-column:1;grid-row:span 2}
+  .c2,.c3,.c4,.c5{grid-column:auto}
+  .c1 .card-img{flex:1;display:flex}
+  .c1 .card-img>div{aspect-ratio:auto;flex:1;min-height:320px}
+  .bento .card-img>div{max-height:calc((100vh - 360px)/2)}
+  .c1 .card-img>div{max-height:none}
+}
+
+/* Students: the three questions side by side, equal cards */
+.s-grid{grid-template-columns:minmax(0,1fr)}
+@media (min-width:760px){.s-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:1100px){.s-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.s-card .img{flex:none;aspect-ratio:16/10;padding:16px;display:flex;align-items:center;justify-content:center}
+.s-card .img img{width:auto;max-width:100%;max-height:100%;border-radius:10px;box-shadow:0 12px 30px rgba(0,0,0,.35)}
+.s-card .txt{padding:18px 22px 22px}
+.s-card h3{font-size:19px}
+.s-card p{font-size:15px}
+
+/* Pricing: tighter, both plans + note in one screen */
+.pricing .in{max-width:1080px}
+.pricing-head{max-width:920px}
+.plan{padding:clamp(24px,3vw,34px);gap:20px}
+.plan h3{min-height:0;font-size:19px}
+.plan .amt b{font-size:clamp(40px,min(4.4vw,7vh),56px)}
+.checks{gap:10px;font-size:15px}
+.price-note{margin:24px auto 0;max-width:760px;text-align:center;font-size:15px;line-height:1.65;color:#475569;text-wrap:pretty}
+.price-note b{color:var(--ink);font-weight:600}
+.price-note a{font-weight:600}
+
+/* FAQ & demo spacing */
+.faq-q{min-height:58px;padding:15px 0}
+#features,#faq{scroll-margin-top:clamp(20px,5vh,48px)}
+
+/* Phones: day tabs become one swipeable row instead of a 3-row grid */
+@media (max-width:759px){
+  .tabs{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:0 -24px 16px;padding:0 24px;scroll-padding-inline:24px}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:0 0 auto;min-width:112px;min-height:58px;padding:10px 14px;scroll-snap-align:start}
+  .tab .tt{font-size:15px}
+}
