@@ -236,7 +236,7 @@
     var msg = 'New demo request — ekRank\nInstitution: ' + lead.inst + '\nContact: ' + lead.contact + '\nMobile: ' + lead.mobile;
     var waLink = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(msg);
     $('#wa-confirm').href = waLink;
-    dl.push({ event: 'generate_lead', form_id: 'demo', currency: 'INR', value: CFG.leadValue || 199 });
+    dl.push({ event: 'generate_lead', form_id: 'demo', currency: 'INR', value: CFG.leadValue || 299 });
 
     if (CFG.openWhatsAppOnSubmit !== false) window.open(waLink, '_blank', 'noopener');
 

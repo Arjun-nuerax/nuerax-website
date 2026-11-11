@@ -19,5 +19,5 @@ window.EKRANK_CONFIG = {
   webAppUrl: 'https://app.ekrank.com',
 
   // Value sent with the GA4 / GTM "generate_lead" event (INR).
-  leadValue: 199
+  leadValue: 299
 };
