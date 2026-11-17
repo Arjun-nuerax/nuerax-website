@@ -584,18 +584,46 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 .pm-dark h4{color:#F4F6FB}.pm-dark .pm-line{color:#F9A8D4}.pm-dark .pm-desc{color:#CBD5E1;border-color:#22304A}.pm-dark .pm-best{color:#94A3B8}
 .pm-you-d{color:#F4F6FB;border-color:#EC4899}
 .pm-inside{display:inline-flex;align-items:center;gap:6px;font:500 13px/1 var(--body);color:#94A3B8}
-.pb-h{margin:56px 0 18px;text-align:center;font:700 clamp(22px,2.4vw,28px)/1.2 var(--head);color:#0F172A}
-.pb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.pb{display:flex;flex-direction:column;gap:6px;padding:20px 22px;border-radius:16px;background:#fff;border:1px solid var(--lline)}
-.pb b{font:600 16px/1.3 var(--head);color:#0F172A}
-.pb span{font-size:14.5px;line-height:1.5;color:#475569}
+.pb-wrap{margin-top:56px;padding:clamp(24px,4vw,44px);border-radius:28px;background:#0B1124;background-image:radial-gradient(600px 300px at 50% 0%,rgba(124,58,237,.28),transparent 70%);box-shadow:0 30px 80px -30px rgba(15,23,42,.5)}
+.pb-eye{color:#22D3EE!important}
+.pb-h{margin:12px 0 26px;font:700 clamp(24px,3vw,36px)/1.15 var(--head);letter-spacing:-.02em;color:#F4F6FB}
+.pb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pb{display:flex;flex-direction:column;gap:6px;padding:16px 16px 22px;border-radius:18px;background:#111A2E;border:1px solid #22304A}
+.pb>b{margin-top:10px;font:600 18px/1.3 var(--head);color:#F4F6FB}
+.pb>span{font-size:14.5px;line-height:1.5;color:#CBD5E1}
+.pb-art{height:116px;border-radius:14px;background:#0A0F1E;border:1px solid #1E293B;display:flex;align-items:center;justify-content:center;gap:14px;overflow:hidden}
+.a-bars{display:flex;align-items:flex-end;gap:6px;height:66px}
+.a-bars i{width:16px;border-radius:4px 4px 2px 2px;background:#33425F}
+.a-bars i.hi{background:linear-gradient(180deg,#A855F7,#6366F1)}
+.a-pill{padding:7px 12px;border-radius:999px;background:rgba(99,102,241,.2);color:#C4B5FD;font:600 13px/1 var(--body)}
+.a-win{width:190px;padding:8px 12px 10px;border-radius:9px;background:#111A2E;border:1px solid #33425F;display:flex;flex-direction:column;gap:7px}
+.a-win-top{display:flex;gap:4px;margin-bottom:2px}.a-win-top i{width:6px;height:6px;border-radius:50%}
+.a-row{display:flex;align-items:center;gap:8px}.a-row i{flex:none;width:8px;height:8px;border-radius:50%}.a-row u{height:6px;border-radius:4px;background:#33425F;text-decoration:none}
+.a-win i.r{background:#EF4444}.a-win i.y{background:#F59E0B}.a-win i.g{background:#10B981}
+.a-kit{display:flex;gap:10px}
+.a-kit div{width:66px;height:80px;padding:12px 8px;border-radius:9px;background:#111A2E;border:1px solid #33425F;display:flex;flex-direction:column;justify-content:flex-end;gap:6px;font:600 13px/1 var(--body);color:#F4F6FB}
+.a-kit i{width:30px;height:4px;border-radius:4px}
+.a-steps{display:flex;align-items:flex-start}
+.a-steps div{display:flex;flex-direction:column;align-items:center;gap:6px}
+.a-steps b{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#34D399;color:#064E3B;font:700 14px/1 var(--head)}
+.a-steps small{font:500 12px/1 var(--body);color:#CBD5E1}
+.a-steps span{width:30px;height:2px;margin:14px 6px 0;background:#33425F}
+.a-mgr{display:flex;align-items:center;gap:12px}
+.a-av{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:#3B2A10;border:1px solid #78350F}
+.a-bub{padding:9px 12px;border-radius:10px;background:#FEF3C7;color:#0F172A;font:600 13px/1 var(--body)}
+.a-road{display:flex;align-items:flex-start;gap:12px}
+.pb-art .a-road div{display:flex;flex-direction:column;align-items:center;gap:5px;padding:0;background:none;border:0}
+.pb-art .a-road small{display:block;font:500 11px/1 var(--body);color:#94A3B8;margin-bottom:2px}
+.pb-art .a-road i{display:block;width:52px;height:9px;border-radius:3px;background:#33425F}
+.pb-art .a-road i.a-bld{background:#6366F1}.pb-art .a-road i.a-shp{background:#10B981}
 .pm-steps{list-style:none;padding:0;margin:36px 0 30px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .pm-steps li{display:flex;gap:14px;align-items:flex-start;padding:18px 20px;border-radius:16px;background:#F5F3FF;border:1px solid #E9D5FF}
 .pm-steps b{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--grad2);color:#fff;font:700 15px/1 var(--head)}
 .pm-steps span{font-size:14.5px;line-height:1.5;color:#475569}
 .pm-steps strong{display:block;font:600 16px/1.3 var(--head);color:#0F172A;margin-bottom:2px}
 @media(max-width:1080px){.pm-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:900px){.pb-grid,.pm-steps{grid-template-columns:1fr}.pm-scale{justify-content:center}}
+@media(max-width:900px){.pm-steps{grid-template-columns:1fr}.pb-grid{grid-template-columns:repeat(2,1fr)}.pm-scale{justify-content:center}}
+@media(max-width:600px){.pb-grid{grid-template-columns:1fr}}
 @media(max-width:600px){.pm-grid{grid-template-columns:1fr}.pm-scale i{width:120px}}
 </style>
 </head>
@@ -980,8 +1008,11 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
         <p class="pm-best">Best for coaching chains and test-series providers</p>
       </article>
     </div>
-    <h3 class="pb-h rv">Everything you need to sell and succeed</h3>
-    <div class="pb-grid rv"><div class="pb"><b>Recurring revenue</b><span>Earn on every renewal, year after year.</span></div><div class="pb"><b>Live demo workspace</b><span>A ready institution to show prospects, with your syllabus.</span></div><div class="pb"><b>Sales &amp; marketing kit</b><span>Pitch deck, ads, flyers and the product tour video for each audience.</span></div><div class="pb"><b>Onboarding by our team</b><span>We set up, train staff and take every institution live.</span></div><div class="pb"><b>Dedicated partner manager</b><span>One person to help you close and grow.</span></div><div class="pb"><b>A voice in the roadmap</b><span>Your institutions’ requests shape what we build next.</span></div></div>
+    <div class="pb-wrap rv">
+      <span class="eyebrow pb-eye"><i></i>Partner benefits</span>
+      <h3 class="pb-h">Everything you need to sell and succeed</h3>
+      <div class="pb-grid"><div class="pb"><div class="pb-art" aria-hidden="true"><div class="a-bars"><i style="height:18px"></i><i style="height:26px"></i><i style="height:34px"></i><i style="height:42px"></i><i class="hi" style="height:64px"></i></div><span class="a-pill">↻ Every renewal</span></div><b>Recurring revenue</b><span>Earn on every renewal, year after year.</span></div><div class="pb"><div class="pb-art" aria-hidden="true"><div class="a-win"><div class="a-win-top"><i class="r"></i><i class="y"></i><i class="g"></i></div><div class="a-row"><i class="r"></i><u style="width:62%"></u></div><div class="a-row"><i class="y"></i><u style="width:78%"></u></div><div class="a-row"><i class="g"></i><u style="width:52%"></u></div></div></div><b>Live demo workspace</b><span>A ready institution to show prospects.</span></div><div class="pb"><div class="pb-art" aria-hidden="true"><div class="a-kit"><div style="transform:rotate(-7deg)"><i style="background:#F472B6"></i>Deck</div><div style="transform:translateY(-6px)"><i style="background:#22D3EE"></i>Ads</div><div style="transform:rotate(6deg)"><i style="background:#A78BFA"></i>Flyer</div></div></div><b>Sales &amp; marketing kit</b><span>Decks, ads, flyers and the tour video for each persona.</span></div><div class="pb"><div class="pb-art" aria-hidden="true"><div class="a-steps"><div><b>1</b><small>Setup</small></div><span></span><div><b>2</b><small>Train</small></div><span></span><div><b>3</b><small>Live</small></div></div></div><b>Onboarding by our team</b><span>We set up, train staff and go live.</span></div><div class="pb"><div class="pb-art" aria-hidden="true"><div class="a-mgr"><span class="a-av"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></span><span class="a-bub">Let’s close this one</span></div></div><b>Dedicated partner manager</b><span>One person to help you close and grow.</span></div><div class="pb"><div class="pb-art" aria-hidden="true"><div class="a-road"><div><small>Asked</small><i></i><i></i><i></i></div><div><small>Building</small><i class="a-bld"></i><i class="a-bld"></i></div><div><small>Shipped</small><i class="a-shp"></i></div></div></div><b>A voice in the roadmap</b><span>Your requests shape what we build next.</span></div></div>
+    </div>
     <ol class="pm-steps rv">
       <li><b>1</b><span><strong>Talk to us</strong>Pick the model that fits how you work.</span></li>
       <li><b>2</b><span><strong>Get your demo workspace</strong>Set up for you this week, ready to show.</span></li>
