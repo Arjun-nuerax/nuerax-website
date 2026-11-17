@@ -3,19 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ekRank — Digital assessment and student performance platform for IIT-JEE and NEET</title>
+<title>ekRank — Assessment Platform for JEE &amp; NEET Institutions</title>
 <link rel="canonical" href="https://ekrank.com/">
-<meta name="description" content="ekRank is the digital assessment and student performance platform for Class 11–12 schools, junior colleges and coaching institutions. Run online proctored exams and NTA-pattern OMR exams for JEE Main, JEE Advanced and NEET, then see exactly what each student should fix next.">
+<meta name="description" content="Set JEE and NEET papers in minutes, run proctored online or NTA-pattern OMR exams, and see exactly what each class and student should work on next.">
 <meta name="theme-color" content="#070B18">
 <meta property="og:site_name" content="ekRank">
 <meta property="og:title" content="ekRank — Every test should tell you what to teach next.">
-<meta property="og:description" content="The digital assessment and student performance platform for Class 11–12 schools, junior colleges and coaching institutions. Book a free demo.">
+<meta property="og:description" content="Set JEE and NEET papers in minutes, run proctored online or NTA-pattern OMR exams, and see exactly what each class and student should work on next.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ekrank.com/">
 <meta property="og:image" content="https://ekrank.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ekRank — Every test should tell you what to teach next.">
+<meta name="twitter:description" content="Set JEE and NEET papers in minutes, run proctored online or NTA-pattern OMR exams, and see exactly what each class and student should work on next.">
 <meta name="twitter:image" content="https://ekrank.com/assets/og-image.png">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/ekrank-mark-v6-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/ekrank-mark-v6-16.png">
@@ -31,7 +33,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"ekRank","url":"https://ekrank.com/","logo":"https://ekrank.com/assets/ekrank-mark-v6-512.png","email":"hello@ekrank.com","telephone":"+91-73311-20766"}
+{"@context":"https://schema.org","@graph":[
+ {"@type":"Organization","name":"ekRank","url":"https://ekrank.com/","logo":"https://ekrank.com/assets/ekrank-mark-v6-512.png","email":"hello@ekrank.com","telephone":"+91-73311-20766"},
+ {"@type":"SoftwareApplication","name":"ekRank","applicationCategory":"EducationalApplication","operatingSystem":"Web, Android, iOS","description":"Integrated assessment and student performance platform for JEE and NEET institutions: proctored online and NTA-pattern OMR exams, question bank, instant results and a next step for every student.","offers":{"@type":"Offer","price":"299","priceCurrency":"INR","description":"Per student per month for institutions."}}
+]}
 </script>
 <style>
 :root{
@@ -93,6 +98,9 @@ p{margin:0}
 .hero-top{max-width:920px;margin:0 auto;text-align:center}
 .pill{display:inline-flex;align-items:center;gap:10px;padding:8px 16px 8px 8px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--line);font:500 14px/1.2 var(--body);color:var(--soft)}
 .pill b{white-space:nowrap;flex:none;padding:5px 10px;border-radius:999px;background:var(--grad2);color:#fff;font:600 12px/1 var(--body)}
+.pill .pill-short{display:none}
+@media (max-width:520px){.pill .pill-long{display:none}.pill .pill-short{display:inline}.pill{font-size:13px;white-space:nowrap}.hero .sub .sub-who{display:none}}
+@media (max-width:340px){.pill{font-size:12px;gap:6px;padding-right:12px}.pill b{padding:4px 8px}}
 h1{font-size:clamp(40px,6.4vw,76px);line-height:1.04;font-weight:700;margin:24px 0 20px}
 .sub{font-size:clamp(17px,1.7vw,20px);color:var(--soft);max-width:760px;margin:0 auto}
 .cta{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:34px}
@@ -538,9 +546,9 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 <section class="hero" id="top">
   <div class="wrap">
     <div class="hero-top rv">
-      <span class="pill"><b>IIT-JEE · NEET</b> For Class 11–12 schools, colleges and coaching institutions</span>
+      <span class="pill"><b>IIT-JEE · NEET</b><span class="pill-long">Integrated assessment &amp; student performance platform</span><span class="pill-short">Assessment &amp; performance</span></span>
       <h1>Every test should tell you <span class="gt">what to teach next.</span></h1>
-      <p class="sub">ekRank is the digital assessment and student performance platform for Class 11–12 schools, junior colleges and coaching institutions. Run online proctored exams and NTA-pattern OMR exams for JEE Main, JEE Advanced and NEET, then see exactly what each student should fix next.</p>
+      <p class="sub"><span class="sub-who">For Class 11–12 schools, junior colleges and coaching institutes. </span>Set JEE Main, JEE Advanced and NEET papers in minutes, run them as proctored online exams or NTA-pattern OMR exams, and see exactly what each class and student should work on next.</p>
       <div class="cta">
         <a class="btn btn-p" href="#demo">Book a free demo →</a>
         <a class="btn btn-g" href="#students">I'm a student — start free trial</a>
