@@ -3,3 +3,4 @@ e32c78ca-*.html
 node_modules/
 Thumbs.db
 .DS_Store
+Claude outputs/

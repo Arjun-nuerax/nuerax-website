@@ -517,6 +517,82 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   .pane h3{font-size:26px}
   .nav-r .btn{display:none}
 }
+/* App store badges */
+.stores{display:flex;flex-wrap:wrap;gap:12px}
+.store-badge{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 18px 0 14px;border-radius:12px;background:#000;border:1px solid rgba(255,255,255,.22);color:#fff;text-decoration:none;transition:border-color .2s,transform .2s}
+.store-badge:hover{border-color:rgba(255,255,255,.55);transform:translateY(-1px);color:#fff}
+.store-badge span{display:grid;line-height:1.1;text-align:left}
+.store-badge small{font:500 10.5px/1.2 var(--body);letter-spacing:.02em;color:#CBD5E1}
+.store-badge b{font:600 17px/1.2 var(--head);color:#fff}
+.stu-apps{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px 16px;margin-top:20px}
+.stu-apps>span{font-size:14px;color:var(--mute)}
+.foot-apps{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;margin:28px 0 0;padding:22px 0 0;border-top:1px solid var(--line)}
+.foot-apps>b{font:600 15px/1.3 var(--head);color:var(--ink)}
+@media (max-width:520px){.foot-apps{justify-content:flex-start}.stores{width:100%}.store-badge{flex:1 1 150px;justify-content:center}}
+/* Product tour video */
+.tour-sec{padding-top:24px}
+.tour{max-width:1040px;margin:0 auto}
+.tour-player{position:relative;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:#0A0F1E;border:1px solid var(--line);box-shadow:0 30px 80px rgba(0,0,0,.45),0 0 0 1px rgba(168,85,247,.25)}
+.tour-player video{display:block;width:100%;height:100%;object-fit:contain;background:#0A0F1E}
+.tour-play{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:6%;border:0;padding:0;cursor:pointer;background:linear-gradient(180deg,rgba(7,11,24,0) 40%,rgba(7,11,24,.45));color:#0F172A}
+.tour-play:hover .tp-chip{transform:scale(1.04)}
+.tp-chip{display:inline-flex;align-items:center;gap:12px;padding:10px 22px 10px 10px;border-radius:999px;background:#fff;box-shadow:0 18px 50px rgba(0,0,0,.45);font:600 17px/1 var(--body);transition:transform .2s ease}
+.tp-chip small{font:500 14px/1 var(--body);color:#64748B}
+.tp-dot{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--grad2);color:#fff}
+.tour-ch{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:18px}
+.tour-ch button{min-height:42px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--soft);font:600 14px/1 var(--body);cursor:pointer;transition:background .2s,color .2s}
+.tour-ch button:hover{background:rgba(255,255,255,.12);color:#fff}
+.tour-ch button[aria-pressed="true"]{background:var(--grad2);border-color:transparent;color:#fff}
+.tour-note{margin-top:14px;text-align:center;font-size:14px;color:var(--mute)}
+.tour-note a{color:#C4B5FD;font-weight:600}
+.tour-link{display:inline-flex;align-items:center;gap:10px;min-height:44px;margin-top:16px;color:#E9D5FF;font:600 15px/1 var(--body);text-decoration:none}
+.tour-link:hover{color:#fff}
+.tl-dot{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.1);border:1px solid var(--line)}
+.tl-dot svg{width:13px;height:13px}
+@media (max-width:640px){
+  .tour-player{aspect-ratio:4/5}
+  .tour-play{align-items:center;padding-bottom:0}
+  .tour-ch{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;margin:16px -24px 0;padding:0 24px;scrollbar-width:none}
+  .tour-ch::-webkit-scrollbar{display:none}
+  .tour-ch button{flex:none}
+  .tp-chip{font-size:15px;padding:8px 18px 8px 8px}.tp-dot{width:42px;height:42px}
+}
+/* Partner programme (aligned with the partner deck) */
+.pm-scale{display:flex;align-items:center;justify-content:flex-end;gap:12px;margin:-16px 0 18px;font:500 14px/1 var(--body);color:var(--lmute)}
+.pm-scale i{width:180px;height:4px;border-radius:4px;background:linear-gradient(90deg,#C7D2FE,#6366F1,#EC4899)}
+.pm-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.pm{display:flex;flex-direction:column;gap:10px;padding:26px;border-radius:var(--r);background:#fff;border:1px solid var(--lline);transition:transform .2s,box-shadow .2s}
+.pm:hover{transform:translateY(-4px);box-shadow:0 22px 48px -24px rgba(79,70,229,.45)}
+.pm-art{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;min-height:96px;margin-bottom:8px;border-radius:14px;background:#F5F6FB;border:1px solid var(--lline)}
+.pm-ico{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:#EEF2FF;color:#4F46E5}
+.pm-mark{background:#fff;box-shadow:0 2px 8px rgba(15,23,42,.08)}
+.pm-arr{color:#94A3B8;font-size:16px}
+.pm-tag{flex-basis:100%;text-align:center;font:600 13px/1 var(--body);color:#0E7490}
+.pm-you{padding:9px 14px;border-radius:10px;border:2px dashed #EC4899;color:#BE185D;font:600 14px/1 var(--body)}
+.pm-plus{color:#94A3B8;font-size:18px}
+.pm h4{font:700 22px/1.2 var(--head);color:#0F172A;margin:0}
+.pm-line{margin:0;font:600 16px/1.35 var(--body);color:#6D28D9}
+.pm-desc{margin:0;padding-top:10px;border-top:1px solid var(--lline);font-size:15px;line-height:1.55;color:#475569}
+.pm-best{margin:auto 0 0;padding-top:12px;font-size:13.5px;color:var(--lmute)}
+.pm-dark{background:#0B1124;border-color:#0B1124;position:relative;overflow:hidden}
+.pm-dark:before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--grad2)}
+.pm-dark .pm-art{background:#111A2E;border-color:#22304A;flex-direction:column;gap:8px}
+.pm-dark h4{color:#F4F6FB}.pm-dark .pm-line{color:#F9A8D4}.pm-dark .pm-desc{color:#CBD5E1;border-color:#22304A}.pm-dark .pm-best{color:#94A3B8}
+.pm-you-d{color:#F4F6FB;border-color:#EC4899}
+.pm-inside{display:inline-flex;align-items:center;gap:6px;font:500 13px/1 var(--body);color:#94A3B8}
+.pb-h{margin:56px 0 18px;text-align:center;font:700 clamp(22px,2.4vw,28px)/1.2 var(--head);color:#0F172A}
+.pb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pb{display:flex;flex-direction:column;gap:6px;padding:20px 22px;border-radius:16px;background:#fff;border:1px solid var(--lline)}
+.pb b{font:600 16px/1.3 var(--head);color:#0F172A}
+.pb span{font-size:14.5px;line-height:1.5;color:#475569}
+.pm-steps{list-style:none;padding:0;margin:36px 0 30px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pm-steps li{display:flex;gap:14px;align-items:flex-start;padding:18px 20px;border-radius:16px;background:#F5F3FF;border:1px solid #E9D5FF}
+.pm-steps b{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--grad2);color:#fff;font:700 15px/1 var(--head)}
+.pm-steps span{font-size:14.5px;line-height:1.5;color:#475569}
+.pm-steps strong{display:block;font:600 16px/1.3 var(--head);color:#0F172A;margin-bottom:2px}
+@media(max-width:1080px){.pm-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:900px){.pb-grid,.pm-steps{grid-template-columns:1fr}.pm-scale{justify-content:center}}
+@media(max-width:600px){.pm-grid{grid-template-columns:1fr}.pm-scale i{width:120px}}
 </style>
 </head>
 <body>
@@ -553,6 +629,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
         <a class="btn btn-p" href="#demo">Book a free demo →</a>
         <a class="btn btn-g" href="#students">I'm a student — start free trial</a>
       </div>
+      <a class="tour-link" href="#tour" data-tour-play="0"><span class="tl-dot"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></span>Watch the 95-second tour</a>
       <div class="reassure"><span>Free 30-minute walkthrough</span><span>We set up your institution</span><span>No commitment</span></div>
     </div>
 
@@ -612,6 +689,30 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       <div class="num"><b class="gt">140</b><span>previous-year papers mapped topic by topic to show what the exams really ask</span></div>
       <div class="num"><b class="gt" style="font-size:clamp(24px,2.5vw,32px);white-space:nowrap">Online + OMR</b><span>Proctored exams on screen or NTA-pattern OMR sheets on paper. Both land in the same results</span></div>
       <div class="num"><b class="gt">3 apps</b><span>Leadership, teachers and students on one connected platform</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec tour-sec" id="tour">
+  <div class="wrap">
+    <div class="sec-h rv">
+      <span class="eyebrow"><i></i>Watch the 95-second tour</span>
+      <h2>Four people. Four daily struggles. <span class="gt">One platform.</span></h2>
+      <p>See what the chairman, principal, teacher and student each get from ekRank, and how it all connects.</p>
+    </div>
+    <div class="tour rv">
+      <div class="tour-player">
+        <video id="tour-video" preload="none" playsinline controlslist="nodownload"
+          poster="media/ekrank-tour-poster-16x9.jpg"
+          data-src-wide="media/ekrank-tour-16x9.mp4" data-src-narrow="media/ekrank-tour-4x5.mp4"
+          data-poster-narrow="media/ekrank-tour-poster-4x5.jpg"
+          aria-label="ekRank product tour, 95 seconds, with voice-over and captions"></video>
+        <button type="button" class="tour-play" id="tour-play" aria-label="Play the 95-second ekRank tour">
+          <span class="tp-chip"><span class="tp-dot"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></span>Play the tour <small>1:35</small></span>
+        </button>
+      </div>
+      <div class="tour-ch" role="group" aria-label="Jump to a part of the tour"><button type="button" data-t="0" aria-pressed="true">Overview</button><button type="button" data-t="4.5" aria-pressed="false">Chairman</button><button type="button" data-t="20.5" aria-pressed="false">Principal</button><button type="button" data-t="40.5" aria-pressed="false">Teacher</button><button type="button" data-t="60.5" aria-pressed="false">Student</button><button type="button" data-t="78.5" aria-pressed="false">How it connects</button></div>
+      <p class="tour-note">With voice-over and captions. Prefer a live walkthrough? <a href="#demo">Book a free demo →</a></p>
     </div>
   </div>
 </section>
@@ -762,6 +863,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       <div class="q"><small>03</small><h4>How far can I go?</h4><p>An estimated rank range and the topics that would move it the most.</p></div>
     </div>
     <div class="stu-cta rv"><a class="btn btn-p" href="https://app.ekrank.com">Start 30-day free trial →</a><a class="btn btn-g" href="#pricing">See student pricing</a></div>
+    <div class="stu-apps rv"><span>Also on your phone</span><div class="stores" data-where="students"><!-- Dummy links: replace href="#" with the real store URLs, or set appStoreUrl / playStoreUrl in js/config.js --><a class="store-badge" href="#" data-store="ios" data-cta="store-ios-students"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><span><small>Download on the</small><b>App Store</b></span></a><a class="store-badge" href="#" data-store="android" data-cta="store-android-students"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303-8.635-8.635z"/></svg><span><small>GET IT ON</small><b>Google Play</b></span></a></div></div>
     <p class="note">Rank ranges are estimates based on your test performance, not a guarantee of your result.</p>
   </div>
 </section>
@@ -840,35 +942,53 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 <section class="sec light" id="partners">
   <div class="wrap">
     <div class="sec-h rv">
-      <span class="eyebrow"><i></i>Partner with ekRank</span>
-      <h2>Grow with us. Take ekRank to the institutions and students you know.</h2>
-      <p>Thousands of schools, junior colleges and coaching institutes prepare students for JEE and NEET, and most still run tests by hand. If you know them, there is a place for you in our partner programme.</p>
+      <span class="eyebrow"><i></i>Partner programme 2026–27</span>
+      <h2>Grow with the platform that <span class="gt">grows results.</span></h2>
+      <p>Exams, results and rank improvement for JEE and NEET institutions — ready for you to take to every campus you serve. Most schools, junior colleges and coaching institutes still run tests by hand.</p>
     </div>
-    <div class="pt rv">
-      <div class="ptc">
-        <span class="who">Referral partner</span>
-        <h4>Recommend ekRank. Earn on every sign-up.</h4>
-        <p>For teachers, YouTube educators, mentors, counsellors and student communities that JEE and NEET aspirants already trust.</p>
-        <ul><li>Your own referral link</li><li>Ready-made posts, videos and demo access</li><li>No targets and no upfront cost</li></ul>
-      </div>
-      <div class="ptc">
-        <span class="who">Solution partner</span>
-        <h4>Offer ekRank under your own brand.</h4>
-        <p>For education consultants, school ERP and software providers, publishers, content and test-series providers who already serve schools and coaching institutes.</p>
-        <ul><li>White-label it: your brand, your logo, your name</li><li>Bundle it with your own services</li><li>Partner pricing and joint proposals</li><li>We onboard and train every institution</li></ul>
-      </div>
-      <div class="ptc">
-        <span class="who">Regional sales partner</span>
-        <h4>Represent ekRank in your city.</h4>
-        <p>For business-development professionals with strong school and coaching relationships in major education hubs across India.</p>
-        <ul><li>Your own city or region</li><li>Demo school, sales kit and product training</li><li>Our team joins your key meetings</li></ul>
-      </div>
+    <div class="pm-scale rv" aria-hidden="true"><span>Light touch</span><i></i><span>Full ownership</span></div>
+    <div class="pm-grid rv">
+      <article class="pm">
+        <div class="pm-art" aria-hidden="true"><span class="pm-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></span><span class="pm-arr" aria-hidden="true">→</span><span class="pm-ico pm-mark"><img src="assets/ekrank-mark-v6-192.png" alt="" width="34" height="34"></span><span class="pm-arr" aria-hidden="true">→</span><span class="pm-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V9l8-5 8 5v11"/><path d="M9 20v-6h6v6"/></svg></span></div>
+        <h4>Referral</h4>
+        <p class="pm-line">You introduce. We close.</p>
+        <p class="pm-desc">Earn on every institution you bring in. No selling or support needed.</p>
+        <p class="pm-best">Best for education consultants, mentors and YouTube educators</p>
+      </article>
+      <article class="pm">
+        <div class="pm-art" aria-hidden="true"><span class="pm-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/></svg></span><span class="pm-arr" aria-hidden="true">→</span><span class="pm-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V9l8-5 8 5v11"/><path d="M9 20v-6h6v6"/></svg></span><span class="pm-tag">↻ Yearly</span></div>
+        <h4>Reseller</h4>
+        <p class="pm-line">You sell. You earn every year.</p>
+        <p class="pm-desc">Recurring commission on every renewal. We handle the product, onboarding and support.</p>
+        <p class="pm-best">Best for EdTech resellers and regional sales partners</p>
+      </article>
+      <article class="pm">
+        <div class="pm-art" aria-hidden="true"><span class="pm-you">You</span><span class="pm-plus">+</span><span class="pm-ico pm-mark"><img src="assets/ekrank-mark-v6-192.png" alt="" width="34" height="34"></span></div>
+        <h4>Co-branded</h4>
+        <p class="pm-line">Your name beside ours.</p>
+        <p class="pm-desc">Your logo across the platform and on the reports parents see.</p>
+        <p class="pm-best">Best for school groups and education trusts</p>
+      </article>
+      <article class="pm pm-dark">
+        <div class="pm-art" aria-hidden="true"><span class="pm-you pm-you-d">Your brand</span><small class="pm-inside"><img src="assets/ekrank-mark-v6-32.png" alt="" width="14" height="14"> engine inside</small></div>
+        <h4>White-label</h4>
+        <p class="pm-line">Your brand. Our engine.</p>
+        <p class="pm-desc">Your app, your domain, your pricing — powered by ekRank.</p>
+        <p class="pm-best">Best for coaching chains and test-series providers</p>
+      </article>
     </div>
-    <div class="pt-why rv"><span>A product schools can see working in one demo</span><span>White-label available: sell it as your own</span><span>Recurring income on renewals</span><span>We handle setup and support</span><span>Early partners get first choice of region</span></div>
+    <h3 class="pb-h rv">Everything you need to sell and succeed</h3>
+    <div class="pb-grid rv"><div class="pb"><b>Recurring revenue</b><span>Earn on every renewal, year after year.</span></div><div class="pb"><b>Live demo workspace</b><span>A ready institution to show prospects, with your syllabus.</span></div><div class="pb"><b>Sales &amp; marketing kit</b><span>Pitch deck, ads, flyers and the product tour video for each audience.</span></div><div class="pb"><b>Onboarding by our team</b><span>We set up, train staff and take every institution live.</span></div><div class="pb"><b>Dedicated partner manager</b><span>One person to help you close and grow.</span></div><div class="pb"><b>A voice in the roadmap</b><span>Your institutions’ requests shape what we build next.</span></div></div>
+    <ol class="pm-steps rv">
+      <li><b>1</b><span><strong>Talk to us</strong>Pick the model that fits how you work.</span></li>
+      <li><b>2</b><span><strong>Get your demo workspace</strong>Set up for you this week, ready to show.</span></li>
+      <li><b>3</b><span><strong>Bring your first institution live</strong>We onboard, train and support them.</span></li>
+    </ol>
     <div class="pt-cta rv">
-      <a class="btn btn-p" href="https://wa.me/917331120766">Become a partner →</a>
-      <a class="btn btn-g" style="color:#1E293B;border-color:#CBD5E1;background:#fff" href="mailto:hello@ekrank.com?subject=ekRank%20partner%20programme">Email us</a>
-      <small>Tell us who you are and where you work. We reply within two working days.</small>
+      <a class="btn btn-p" href="https://wa.me/917331120766?text=Hi%20ekRank%2C%20I%27d%20like%20to%20know%20about%20the%20partner%20programme." target="_blank" rel="noopener" data-cta="partner-whatsapp">Become a partner →</a>
+      <a class="btn btn-g" style="color:#1E293B;border-color:#CBD5E1;background:#fff" href="mailto:hello@ekrank.com?subject=ekRank%20partner%20programme" data-cta="partner-email">Email us</a>
+      <a class="btn btn-g" style="color:#1E293B;border-color:#CBD5E1;background:#fff" href="media/ekrank-tour-16x9.mp4" download="ekRank-product-tour.mp4" data-cta="partner-tour-download">Download the tour video</a>
+      <small>Let's raise results together. Tell us who you are and where you work — we reply within two working days.</small>
     </div>
   </div>
 </section>
@@ -912,6 +1032,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
       <div class="fcol"><b>Company</b><a href="#demo">Book a demo</a><a href="#partners">Become a partner</a><a href="https://app.ekrank.com/privacy-policy">Privacy</a><a href="https://app.ekrank.com/terms">Terms</a><a href="https://app.ekrank.com/refund-policy">Refunds</a></div>
       <div class="fcol"><b>Contact</b><a href="mailto:hello@ekrank.com">hello@ekrank.com</a><a href="https://wa.me/917331120766">WhatsApp +91 73311 20766</a><a href="https://app.ekrank.com">Sign in</a></div>
     </div>
+    <div class="foot-apps"><b>Get the ekRank apps</b><div class="stores" data-where="footer"><!-- Dummy links: replace href="#" with the real store URLs, or set appStoreUrl / playStoreUrl in js/config.js --><a class="store-badge" href="#" data-store="ios" data-cta="store-ios-footer"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg><span><small>Download on the</small><b>App Store</b></span></a><a class="store-badge" href="#" data-store="android" data-cta="store-android-footer"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.802 8.99l-2.303 2.303-8.635-8.635z"/></svg><span><small>GET IT ON</small><b>Google Play</b></span></a></div></div>
     <div class="copy"><span>© 2026 ekRank. All rights reserved.</span><span>IIT-JEE and NEET are examinations conducted by their respective authorities; ekRank is not affiliated with them.</span></div>
   </div>
 </footer>
@@ -978,6 +1099,42 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
     });
   });
   $('#reset-form').addEventListener('click',function(){form.reset();tried=false;paint({});ferr.hidden=true;ok.hidden=true;form.hidden=false;F.inst.focus()});
+})();
+</script>
+<script>
+(function(){
+  var C=window.EKRANK_CONFIG||{};
+  document.querySelectorAll('a[data-store]').forEach(function(a){
+    var url=a.getAttribute('data-store')==='ios'?C.appStoreUrl:C.playStoreUrl;
+    if(url){a.href=url;a.target='_blank';a.rel='noopener';}
+    else{a.setAttribute('aria-label',(a.getAttribute('data-store')==='ios'?'App Store':'Google Play')+' — coming soon');a.addEventListener('click',function(e){e.preventDefault();});}
+  });
+})();
+</script>
+<script>
+(function(){
+  var v=document.getElementById('tour-video'); if(!v) return;
+  var btn=document.getElementById('tour-play'), chips=[].slice.call(document.querySelectorAll('.tour-ch button'));
+  var dl=(window.dataLayer=window.dataLayer||[]), narrow=window.matchMedia('(max-width:640px)').matches, started=false, marks={};
+  if(narrow) v.poster=v.getAttribute('data-poster-narrow');
+  function load(){ if(!v.getAttribute('src')){ v.src=v.getAttribute(narrow?'data-src-narrow':'data-src-wide'); } }
+  function play(t){
+    load(); btn.hidden=true; v.controls=true;
+    var go=function(){ try{ v.currentTime=t||0; }catch(e){} var p=v.play(); if(p&&p.catch)p.catch(function(){}); };
+    if(v.readyState>=1) go(); else { v.addEventListener('loadedmetadata',go,{once:true}); var p=v.play(); if(p&&p.catch)p.catch(function(){}); }
+  }
+  btn.addEventListener('click',function(){ play(0); });
+  chips.forEach(function(c){ c.addEventListener('click',function(){ var t=parseFloat(c.getAttribute('data-t')); play(t); dl.push({event:'tour_chapter',chapter:c.textContent,time:t}); }); });
+  document.querySelectorAll('[data-tour-play]').forEach(function(a){ a.addEventListener('click',function(e){ e.preventDefault(); document.getElementById('tour').scrollIntoView({behavior:'smooth',block:'center'}); play(0); dl.push({event:'cta_click',cta_id:'hero-tour'}); }); });
+  v.addEventListener('play',function(){ btn.hidden=true; if(!started){ started=true; dl.push({event:'video_start',video_title:'ekRank product tour'}); } });
+  v.addEventListener('timeupdate',function(){
+    var t=v.currentTime, act=0; chips.forEach(function(c,i){ if(t>=parseFloat(c.getAttribute('data-t'))-0.05) act=i; });
+    chips.forEach(function(c,i){ c.setAttribute('aria-pressed',String(i===act)); });
+    var pct=v.duration?Math.floor(t/v.duration*100):0; [25,50,75].forEach(function(m){ if(pct>=m&&!marks[m]){ marks[m]=1; dl.push({event:'video_progress',video_title:'ekRank product tour',video_percent:m}); } });
+  });
+  v.addEventListener('ended',function(){ dl.push({event:'video_complete',video_title:'ekRank product tour'}); });
+  // pause (not reset) when the player is scrolled almost fully out of view
+  if('IntersectionObserver' in window){ var seen=false; new IntersectionObserver(function(es){ var r=es[0].intersectionRatio; if(r>=0.3) seen=true; else if(r<0.1 && seen){ seen=false; if(!v.paused) v.pause(); } },{threshold:[0,0.1,0.3]}).observe(v); }
 })();
 </script>
 </body>

@@ -6,7 +6,7 @@
   "cleanUrls": true,
   "headers": [
     {
-      "source": "/(assets|screenshots)/(.*)",
+      "source": "/(assets|screenshots|media)/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
