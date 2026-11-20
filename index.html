@@ -632,7 +632,7 @@ h1.h1-roles{font-size:clamp(32px,4.4vw,62px);line-height:1.08;letter-spacing:-.0
 @media(max-width:600px){.pb-grid{grid-template-columns:1fr}}
 @media(max-width:600px){.pm-grid{grid-template-columns:1fr}.pm-scale i{width:120px}}
 </style>
-<link rel="stylesheet" href="css/hero-flow.css?v=2">
+<link rel="stylesheet" href="css/hero-flow.css?v=3">
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MKQQ5BG4" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -672,17 +672,19 @@ h1.h1-roles{font-size:clamp(32px,4.4vw,62px);line-height:1.08;letter-spacing:-.0
     </div>
 
     <div class="stage xf-stage rv">
-      <div class="xf" id="xf" data-s="1" data-who="t" role="img" aria-label="Animated walkthrough of a proctored JEE exam in ekRank. The teacher creates the paper, turns on webcam and full-screen proctoring, gets it approved and publishes it. The student is notified, passes a camera and face check, and writes in a locked full-screen window. Leaving the screen or looking away is flagged: the student is warned and the teacher is alerted with webcam snapshots, and the exam auto-submits after three violations. Results reach the student with their mistakes explained, and the teacher sees what to reteach and sends practice to the students who need it.">
+      <div class="xf" id="xf" data-s="1" data-who="t" role="img" aria-label="Animated walkthrough of a proctored JEE exam in ekRank. The teacher creates the paper, turns on webcam and full-screen proctoring, gets it approved and publishes it. The online students are notified and each one passes a camera and face check, and writes in a locked full-screen window. Leaving the screen or looking away is flagged: the student is warned and the teacher is alerted with webcam snapshots, and the exam auto-submits after three violations. Results reach the student with their mistakes explained, and the teacher sees what to reteach and sends practice to the students who need it. For the section writing on paper, the question paper, OMR sheets and answer key are generated for printing, and the filled sheets are scanned, uploaded and marked automatically, so online and OMR results come together.">
         <ol class="xf-steps" aria-hidden="true">
           <li data-go="1" class="r-t"><b>1</b>Create</li>
-          <li data-go="2" class="r-t"><b>2</b>Proctoring</li>
+          <li data-go="2" class="r-t"><b>2</b>Online/OMR</li>
           <li data-go="3" class="r-t"><b>3</b>Publish</li>
-          <li data-go="4" class="r-s"><b>4</b>Camera check</li>
-          <li data-go="5" class="r-s"><b>5</b>Writing</li>
-          <li data-go="6" class="r-s"><b>6</b>Violations</li>
-          <li data-go="7" class="r-t"><b>7</b>Review flags</li>
-          <li data-go="8" class="r-s"><b>8</b>Results</li>
-          <li data-go="9" class="r-t"><b>9</b>Reteach</li>
+          <li data-go="4" class="r-t"><b>4</b>Print OMR</li>
+          <li data-go="5" class="r-s"><b>5</b>Check-in</li>
+          <li data-go="6" class="r-s"><b>6</b>Writing</li>
+          <li data-go="7" class="r-s"><b>7</b>Violations</li>
+          <li data-go="8" class="r-t"><b>8</b>Review flags</li>
+          <li data-go="9" class="r-t"><b>9</b>Scan OMR</li>
+          <li data-go="10" class="r-s"><b>10</b>Results</li>
+          <li data-go="11" class="r-t"><b>11</b>Reteach</li>
         </ol>
 
         <div class="xf-duo" aria-hidden="true">
@@ -699,7 +701,7 @@ h1.h1-roles{font-size:clamp(32px,4.4vw,62px);line-height:1.08;letter-spacing:-.0
 
                 <!-- L1 create -->
                 <section class="xs" data-sc="1">
-                  <div class="xs-row"><span class="chip" data-act="c12">Class 12</span><span class="chip sq" data-act="sa">A</span><span class="chip sq" data-act="sc">C</span><span class="muted xs-count"><b class="cnt" data-to="82">0</b> students</span></div>
+                  <div class="xs-row"><span class="chip" data-act="c12">Class 12</span><span class="chip sq" data-act="sa">A</span><span class="chip sq" data-act="sb">B</span><span class="chip sq" data-act="sc">C</span><span class="muted xs-count"><b class="cnt" data-to="146">0</b> students</span></div>
                   <div class="two">
                     <div class="tbl">
                       <div class="tr ch"><span><i class="cb" data-act="ch1"></i>Electrostatics</span><em class="w lo">Low</em></div>
@@ -726,12 +728,11 @@ h1.h1-roles{font-size:clamp(32px,4.4vw,62px);line-height:1.08;letter-spacing:-.0
                       <div class="xs-row"><span class="chip" data-act="jee">JEE Main</span><span class="chip">JEE Adv</span><span class="chip">NEET</span></div>
                       <div class="mk"><span><b class="g">+4</b> correct</span><span><b class="r">−1</b> wrong</span></div>
                       <div class="mk"><span><b>45</b> min</span><span><b>Thu 22 Oct</b> 11:00 am</span></div>
-                      <small class="sm2">Conduct</small>
-                      <div class="xs-row"><span class="chip" data-act="m1">Online · app &amp; web</span><span class="chip" data-act="m2">OMR paper</span></div>
-                      <small class="sm2">Students</small>
-                      <div class="mk"><span><b>82</b> in Class 12 A, C</span></div>
+                      <small class="sm2">How each section writes</small>
+                      <div class="cond" data-act="m1"><span class="rb"></span><div><b>Online · proctored</b><small>Sections A, B · 82 students</small></div></div>
+                      <div class="cond" data-act="m2"><span class="rb"></span><div><b>Offline · OMR sheets</b><small>Section C · 64 students</small></div></div>
                     </div>
-                    <div class="fbox"><small>Proctoring</small>
+                    <div class="fbox"><small>Online proctoring</small>
                       <div class="ptg" data-act="p1"><span class="tg"><i></i></span><div><b>Webcam &amp; face check</b><small>Camera on throughout the exam</small></div></div>
                       <div class="ptg" data-act="p2"><span class="tg"><i></i></span><div><b>Lock full-screen</b><small>Leaving the exam screen is recorded</small></div></div>
                       <div class="ptg" data-act="p3"><span class="tg"><i></i></span><div><b>Auto-submit after 3 violations</b><small>Student is warned each time</small></div></div>
@@ -744,8 +745,8 @@ h1.h1-roles{font-size:clamp(32px,4.4vw,62px);line-height:1.08;letter-spacing:-.0
                 <!-- L3 approve + publish -->
                 <section class="xs" data-sc="3">
                   <div class="two">
-                    <div class="rsum"><small>Electrostatics · Chapter test</small><b>Class 12 · Sections A, C</b>
-                      <ul><li>30 questions · JEE Main · +4 / −1</li><li>Thu 22 Oct · 11:00 am · 45 min</li><li>Proctored: webcam, full-screen</li><li>Also on OMR paper</li></ul>
+                    <div class="rsum"><small>Electrostatics · Chapter test</small><b>Class 12 · Sections A, B, C</b>
+                      <ul><li>30 questions · JEE Main · +4 / −1</li><li>Thu 22 Oct · 11:00 am · 45 min</li><li>Online, proctored: A, B (82)</li><li>Offline on OMR: C (64)</li></ul>
                       <div class="prt"><small>Ready to print</small><span class="pack"><em>Question paper</em><em>Answer key</em><em>OMR sheets</em></span></div></div>
                     <div class="appr"><small>Approval</small>
                       <div class="ap" data-act="a1"><span class="av av-t">PM</span><div><b>Priya Menon</b><small>Teacher · set the paper</small></div><em>✓</em></div>
@@ -754,11 +755,23 @@ h1.h1-roles{font-size:clamp(32px,4.4vw,62px);line-height:1.08;letter-spacing:-.0
                     </div>
                   </div>
                   <div class="xs-foot"><span class="muted">Students are notified on the ekRank app</span><span class="btn-mini pub" data-act="pub">Publish</span></div>
-                  <div class="toast">✓ Published · 82 students notified</div>
+                  <div class="toast">✓ Published · 82 online students notified</div>
                 </section>
 
-                <!-- L4–L6 live proctoring monitor -->
-                <section class="xs xmon" data-sc="4,5,6">
+                <!-- L4 offline: generate print pack -->
+                <section class="xs" data-sc="4">
+                  <div class="xs-row"><span class="tag v">Offline · Section C · 64 students</span><span class="muted">Sheets follow the exam pattern: JEE Main, JEE Advanced or NEET</span></div>
+                  <div class="docs">
+                    <div class="doc"><div class="pg qp"><i class="h1"></i><i class="h2"></i><p><b>1.</b><s></s><s></s></p><p><b>2.</b><s></s><s></s></p><p><b>3.</b><s></s><s></s></p><p><b>4.</b><s></s><s></s></p><p><b>5.</b><s></s><s></s></p></div><b>Question paper</b><small>30 questions · JEE Main pattern</small><u><i></i></u></div>
+                    <div class="doc"><div class="pg"><span class="omr-gen"></span></div><b>OMR answer sheet</b><small>NTA style · one per student</small><u><i></i></u></div>
+                    <div class="doc"><div class="pg key"><i class="h1"></i><span class="kg"></span></div><b>Answer key</b><small>Used to mark the sheets</small><u><i></i></u></div>
+                  </div>
+                  <div class="xs-foot"><span class="muted">64 copies · A4</span><span class="btn-mini" data-act="print">Download &amp; print</span></div>
+                  <div class="toast">✓ Papers and OMR sheets ready to print</div>
+                </section>
+
+                <!-- L5–L7 live proctoring monitor -->
+                <section class="xs xmon" data-sc="5,6,7">
                   <div class="lv-top"><span class="xlive">LIVE</span><b>Electrostatics Chapter Test</b><span class="tmr">Ends in <b class="clock">44:52</b></span></div>
                   <div class="lv-n">
                     <div><small>Joined</small><b><span class="cnt jn" data-to="82">0</span><em>/82</em></b></div>
@@ -787,8 +800,8 @@ h1.h1-roles{font-size:clamp(32px,4.4vw,62px);line-height:1.08;letter-spacing:-.0
                   </div>
                 </section>
 
-                <!-- L7 review flags -->
-                <section class="xs" data-sc="7">
+                <!-- L8 review flags -->
+                <section class="xs" data-sc="8">
                   <div class="rv-head"><span class="rv-av" data-av="2"></span><div><b>Diya R.</b><small>Class 12 · A · 2 flags</small></div><span class="tag am">Needs review</span></div>
                   <div class="snaps">
                     <figure><span class="snap" data-av="2"></span><figcaption>11:04 · face check ✓</figcaption></figure>
@@ -800,17 +813,34 @@ h1.h1-roles{font-size:clamp(32px,4.4vw,62px);line-height:1.08;letter-spacing:-.0
                   <div class="toast">✓ Marked for review · principal notified</div>
                 </section>
 
-                <!-- L8 results -->
-                <section class="xs" data-sc="8">
-                  <div class="rs-k"><span><b><span class="cnt" data-to="61">0</span>%</b><small>class average</small></span><span><b>82/82</b><small>attended</small></span><span><b class="g">79</b><small>clean attempts</small></span><span><b class="am">3</b><small>flagged</small></span></div>
+                <!-- L9 offline: scan + evaluate OMR -->
+                <section class="xs" data-sc="9">
+                  <div class="drop" data-act="up"><span class="up-ic"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 16V4m0 0l-5 5m5-5l5 5M5 20h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><b>Section C · scanned OMR sheets.pdf</b><small>64 pages from the school scanner</small></div><u><i></i></u><em class="up-ok">Uploaded</em></div>
+                  <div class="scan-two">
+                    <div class="sheet"><span class="omr-gen" data-fill="1"></span><i class="beam"></i><em class="sh-n">Sheet 23 of 64 · reading bubbles</em></div>
+                    <div class="marks"><small>Marked automatically</small>
+                      <div class="mrow"><span>12C-01</span><b>Ishaan V.</b><em>96</em></div>
+                      <div class="mrow"><span>12C-02</span><b>Nisha G.</b><em>71</em></div>
+                      <div class="mrow"><span>12C-03</span><b>Arjun D.</b><em>58</em></div>
+                      <div class="mrow"><span>12C-04</span><b>Pooja L.</b><em>88</em></div>
+                      <div class="mrow"><span>12C-05</span><b>Farhan Q.</b><em>64</em></div>
+                      <div class="read"><b><span class="cnt" data-to="64">0</span>/64</b> sheets read and marked</div>
+                    </div>
+                  </div>
+                  <div class="toast">✓ OMR results added · 146 students ranked together</div>
+                </section>
+
+                <!-- L10 results -->
+                <section class="xs" data-sc="10">
+                  <div class="rs-k"><span><b><span class="cnt" data-to="61">0</span>%</b><small>class average</small></span><span><b>146/146</b><small>attended</small></span><span><b>82 + 64</b><small>online + OMR</small></span><span><b class="am">3</b><small>flagged online</small></span></div>
                   <div class="rs-card grow"><small>How the class scored</small>
                     <div class="hist"><i style="--h:18%" class="r"></i><i style="--h:30%" class="r"></i><i style="--h:46%" class="a"></i><i style="--h:72%" class="a"></i><i style="--h:94%" class="g"></i><i style="--h:80%" class="g"></i><i style="--h:52%" class="g"></i><i style="--h:26%" class="g"></i></div>
                     <div class="hl"><span>0</span><span>15</span><span>30</span><span>45</span><span>60</span><span>75</span><span>90</span><span>105+</span></div>
                   </div>
                 </section>
 
-                <!-- L9 reteach -->
-                <section class="xs" data-sc="9">
+                <!-- L11 reteach -->
+                <section class="xs" data-sc="11">
                   <div class="rs-card grow"><small>What to teach next</small>
                     <div class="nx"><div><b>Force on a conductor</b><u><i style="--w:31%" class="r"></i></u><small>31% got it right</small></div><span>Reteach</span></div>
                     <div class="nx"><div><b>Gauss's law</b><u><i style="--w:48%" class="a"></i></u><small>48% got it right · 23 students</small></div><span class="alt" data-act="practice">Give practice</span></div>
@@ -831,13 +861,13 @@ h1.h1-roles{font-size:clamp(32px,4.4vw,62px);line-height:1.08;letter-spacing:-.0
               <div class="xp-notch"></div>
               <div class="xp-scr">
                 <!-- P1–P2 lock screen / P3 notification -->
-                <section class="ps lock" data-sc="1,2,3">
+                <section class="ps lock" data-sc="1,2,3,4">
                   <div class="lk-time">10:58</div><div class="lk-date">Thursday, 22 October</div>
                   <div class="notif"><img src="assets/ekrank-mark-v6-32.png" alt=""><div><b>ekRank · New exam</b><span>Electrostatics Chapter Test · today 11:00 am · 45 min · proctored</span></div></div>
                 </section>
 
                 <!-- P4 system check -->
-                <section class="ps" data-sc="4">
+                <section class="ps" data-sc="5">
                   <b class="ph-t">Before you start</b>
                   <div class="cam"><span class="cam-av" data-av="1"></span><i class="fr"></i><span class="cam-ok">Face detected</span></div>
                   <ul class="chk"><li>Camera on</li><li>Face matched</li><li>Full-screen locked</li><li>Network stable</li></ul>
@@ -845,7 +875,7 @@ h1.h1-roles{font-size:clamp(32px,4.4vw,62px);line-height:1.08;letter-spacing:-.0
                 </section>
 
                 <!-- P5–P6 exam -->
-                <section class="ps exam" data-sc="5,6">
+                <section class="ps exam" data-sc="6,7">
                   <div class="ex-top"><span>Chapter test</span><span class="ex-tm">42:18</span></div>
                   <div class="pip" data-av="1"><i></i></div>
                   <div class="ex-q"><b>Q 14</b> / 30<span>Physics</span></div>
@@ -858,14 +888,14 @@ h1.h1-roles{font-size:clamp(32px,4.4vw,62px);line-height:1.08;letter-spacing:-.0
                 </section>
 
                 <!-- P7 submitted -->
-                <section class="ps center" data-sc="7">
+                <section class="ps center" data-sc="8,9">
                   <span class="big-ok">✓</span><b class="ph-t">Exam submitted</b><small class="ph-s">Answers saved. Results at 11:46 am</small>
                 </section>
 
                 <!-- P8 result -->
-                <section class="ps" data-sc="8">
+                <section class="ps" data-sc="10">
                   <b class="ph-t">Your result</b>
-                  <div class="res"><b><span class="cnt" data-to="84">0</span><em>/120</em></b><span>Rank in class <b>6</b> of 82</span></div>
+                  <div class="res"><b><span class="cnt" data-to="84">0</span><em>/120</em></b><span>Rank <b>6</b> of 146 · online + OMR</span></div>
                   <small class="ph-k">Why you lost marks</small>
                   <div class="xdna"><span><i style="--w:34%"></i>Concept 34%</span><span><i style="--w:27%" class="d2"></i>Application 27%</span><span><i style="--w:18%" class="d3"></i>Calculation 18%</span></div>
                   <small class="ph-s">Weakest: Gauss's law</small>
@@ -873,7 +903,7 @@ h1.h1-roles{font-size:clamp(32px,4.4vw,62px);line-height:1.08;letter-spacing:-.0
                 </section>
 
                 <!-- P9 practice lands -->
-                <section class="ps lock" data-sc="9">
+                <section class="ps lock" data-sc="11">
                   <div class="lk-time">4:30</div><div class="lk-date">Thursday, 22 October</div>
                   <div class="notif"><img src="assets/ekrank-mark-v6-32.png" alt=""><div><b>ekRank · Practice from Ms. Priya</b><span>Gauss's law · 10 questions · added to today's plan</span></div></div>
                 </section>
@@ -883,110 +913,6 @@ h1.h1-roles{font-size:clamp(32px,4.4vw,62px);line-height:1.08;letter-spacing:-.0
           </div>
         </div>
         <p class="xf-cap" aria-hidden="true"><b class="xf-capn">1</b><span class="xf-capr">Teacher</span><span class="xf-capt"></span></p>
-      </div>
-    </div>
-  </div>
-                <div class="xs-foot"><span class="tag ok pop">1 chapter · 3 topics picked</span><span class="btn-mini" data-act="next1">Next →</span></div>
-              </section>
-
-              <!-- 2 · Questions -->
-              <section class="xs s2">
-                <div class="xs-row"><span class="big"><b class="cnt" data-to="30">0</b> questions picked by weightage</span><span class="tag v"><b class="cnt" data-to="12">0</b> previous-year (PYQ)</span><span class="tag">Single · Numerical</span></div>
-                <div class="qgrid">
-                  <div class="q"><small>Q1 · Coulomb's law</small><p>Two charges +q and −q are a distance d apart. The field at the midpoint is</p><span class="tags"><em class="t v">PYQ · JEE Main 2024</em><em class="t">Medium</em></span></div>
-                  <div class="q"><small>Q2 · Gauss's law</small><p>Flux through a cube with charge q at its centre is</p><span class="tags"><em class="t">Concept</em><em class="t">Easy</em></span></div>
-                  <div class="q swap" data-act="swap"><small>Q3 · Gauss's law</small><p class="old">A spherical shell of radius R carries charge Q. Field inside is</p><p class="new">An infinite sheet has charge density σ. The field near it is</p><span class="tags"><em class="t v">PYQ · JEE Main 2023</em><em class="t">Medium</em></span><span class="sw">↻ Swap</span></div>
-                  <div class="q"><small>Q4 · Capacitance</small><p>Two capacitors 2 µF and 3 µF in series. Equivalent capacitance</p><span class="tags"><em class="t">Numerical</em><em class="t">Medium</em></span></div>
-                  <div class="q"><small>Q5 · Potential</small><p>Work done to move 2 µC between points at 10 V and 4 V is</p><span class="tags"><em class="t v">PYQ · JEE Main 2022</em><em class="t">Easy</em></span></div>
-                  <div class="q"><small>Q6 · Capacitance</small><p>Energy stored in a 5 µF capacitor charged to 100 V</p><span class="tags"><em class="t">Numerical</em><em class="t">Hard</em></span></div>
-                </div>
-                <div class="xs-foot"><span class="muted">From a bank of 43,000+ expert-curated questions</span><span class="btn-mini" data-act="next2">Next →</span></div>
-              </section>
-
-              <!-- 3 · Format -->
-              <section class="xs s3">
-                <div class="fgrid">
-                  <div class="fbox"><small>Exam type</small><div class="xs-row"><span class="chip on">Chapter test</span><span class="chip">Weekly mixed</span><span class="chip">Full mock</span></div></div>
-                  <div class="fbox"><small>Pattern</small><div class="xs-row"><span class="chip" data-act="jee">JEE Main</span><span class="chip">JEE Advanced</span><span class="chip">NEET</span></div></div>
-                  <div class="fbox"><small>Marking</small><div class="mk"><span><b class="g">+4</b> correct</span><span><b class="r">−1</b> wrong</span><span><b>0</b> numerical wrong</span></div></div>
-                  <div class="fbox"><small>Difficulty mix</small>
-                    <div class="dif"><span><em style="--w:30%" class="e"></em>Easy 30%</span><span><em style="--w:50%" class="m"></em>Medium 50%</span><span><em style="--w:20%" class="h"></em>Hard 20%</span></div>
-                  </div>
-                </div>
-                <div class="xs-foot"><span class="tag">30 questions · 120 marks</span><span class="btn-mini" data-act="next3">Next →</span></div>
-              </section>
-
-              <!-- 4 · Schedule -->
-              <section class="xs s4">
-                <div class="sgrid">
-                  <div class="sbox"><small>Date</small><b>Thu, 22 Oct</b></div>
-                  <div class="sbox"><small>Starts</small><b>11:00 am</b></div>
-                  <div class="sbox"><small>Duration</small><b>45 min</b></div>
-                </div>
-                <div class="modes">
-                  <div class="mode" data-act="online"><span class="tg"><i></i></span><div><b>Online · proctored</b><small>Full-screen test window, leaving the screen is recorded</small></div></div>
-                  <div class="mode" data-act="omr"><span class="tg"><i></i></span><div><b>On paper · NTA-pattern OMR</b><small>Question paper, answer key and OMR sheets generated</small></div></div>
-                </div>
-                <div class="xs-foot"><span class="muted">Students are reminded 1 hour before</span><span class="btn-mini" data-act="next4">Review →</span></div>
-              </section>
-
-              <!-- 5 · Review, approve, publish -->
-              <section class="xs s5">
-                <div class="rgrid">
-                  <div class="rsum">
-                    <small>Electrostatics · Chapter test</small>
-                    <b>Class 12 · Sections A, C</b>
-                    <ul><li>30 questions · 120 marks</li><li>JEE Main pattern · +4 / −1</li><li>Thu 22 Oct · 11:00 am · 45 min</li><li>Online + OMR paper</li></ul>
-                  </div>
-                  <div class="appr">
-                    <small>Approval</small>
-                    <div class="ap" data-act="a1"><span class="av av-t">PM</span><div><b>Priya Menon</b><small>Teacher · set the paper</small></div><em>✓</em></div>
-                    <div class="ap" data-act="a2"><span class="av av-h">RK</span><div><b>R. Kumar</b><small>HOD Physics · reviewed quality</small></div><em>✓</em></div>
-                    <div class="ap" data-act="a3"><span class="av av-p">SA</span><div><b>S. Anand</b><small>Principal · approved</small></div><em>✓</em></div>
-                  </div>
-                </div>
-                <div class="xs-foot"><span class="pack"><em>Question paper</em><em>Answer key</em><em>OMR sheets</em> ready to print</span><span class="btn-mini pub" data-act="pub">Publish</span></div>
-                <div class="toast">✓ Published · 82 students notified</div>
-              </section>
-
-              <!-- 6 · Live -->
-              <section class="xs s6">
-                <div class="lv-top"><span class="live">LIVE</span><b>Electrostatics Chapter Test</b><span class="muted">Class 12 · A, C</span><span class="tmr">Ends in <b class="clock">28:41</b></span></div>
-                <div class="lv-bar"><i class="sub"></i><i class="wr"></i></div>
-                <div class="lv-n">
-                  <div><small>Joined</small><b><span class="cnt" data-to="82">0</span><em>/82</em></b></div>
-                  <div><small>Writing now</small><b class="cnt" data-to="40">0</b></div>
-                  <div><small>Submitted</small><b class="cnt g" data-to="42">0</b></div>
-                  <div><small>OMR sheets scanned</small><b class="cnt" data-to="40">0</b></div>
-                </div>
-                <div class="lv-alert"><span class="dot"></span>2 students left the test screen · flagged for review</div>
-              </section>
-
-              <!-- 7 · Results -->
-              <section class="xs s7">
-                <div class="rs-top">
-                  <div><span class="tag ok">Results ready · 11:46 am</span><b>Electrostatics Chapter Test</b></div>
-                  <div class="rs-k"><span><b><span class="cnt" data-to="61">0</span>%</b><small>class average</small></span><span><b>82/82</b><small>attended</small></span><span><b class="g">+4 pts</b><small>vs last test</small></span></div>
-                </div>
-                <div class="rs-grid">
-                  <div class="rs-card">
-                    <small>How the class scored</small>
-                    <div class="hist"><i style="--h:18%" class="r"></i><i style="--h:30%" class="r"></i><i style="--h:46%" class="a"></i><i style="--h:72%" class="a"></i><i style="--h:94%" class="g"></i><i style="--h:80%" class="g"></i><i style="--h:52%" class="g"></i><i style="--h:26%" class="g"></i></div>
-                  </div>
-                  <div class="rs-card">
-                    <small>What to teach next</small>
-                    <div class="nx"><div><b>Force on a conductor</b><u><i style="--w:31%" class="r"></i></u><small>31% got it right</small></div><span>Reteach</span></div>
-                    <div class="nx"><div><b>Gauss's law</b><u><i style="--w:48%" class="a"></i></u><small>48% got it right</small></div><span>Reteach</span></div>
-                    <div class="nx"><div><b>Electric potential</b><u><i style="--w:57%" class="a"></i></u><small>57% got it right</small></div><span class="alt" data-act="practice">Give practice</span></div>
-                  </div>
-                </div>
-                <div class="toast">✓ Practice sent to 23 students · plan updated in their app</div>
-              </section>
-            </div>
-          </div>
-          <svg class="xf-cur" width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2l15 9.2-6.6 1.6 3.8 7.2-2.9 1.5-3.8-7.2L4.6 19z" fill="#0F172A" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
-        </div>
-        <p class="xf-cap" aria-hidden="true"><b class="xf-capn">1</b><span class="xf-capt">Pick the class and chapters. Weightage and past-paper counts are shown for every topic.</span></p>
       </div>
     </div>
   </div>
@@ -1457,6 +1383,6 @@ h1.h1-roles{font-size:clamp(32px,4.4vw,62px);line-height:1.08;letter-spacing:-.0
   if('IntersectionObserver' in window){ var seen=false; new IntersectionObserver(function(es){ var r=es[0].intersectionRatio; if(r>=0.3) seen=true; else if(r<0.1 && seen){ seen=false; if(!v.paused) v.pause(); } },{threshold:[0,0.1,0.3]}).observe(v); }
 })();
 </script>
-<script src="js/hero-flow.js?v=2" defer></script>
+<script src="js/hero-flow.js?v=3" defer></script>
 </body>
 </html>

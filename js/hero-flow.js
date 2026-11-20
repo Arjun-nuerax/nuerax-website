@@ -47,6 +47,38 @@
     if (mode === 'two') e.insertAdjacentHTML('beforeend', '<i class="bx" style="left:4%;top:24%;width:40%;height:48%"></i><i class="bx" style="left:47%;top:16%;width:42%;height:52%"></i>');
   });
 
+  /* ---------- NTA-style OMR sheet (drawn, blank or filled + marked) ---------- */
+  var KEY = 'BDACBADCCBDABDCACBDABCDBACDBCA', ANS = 'BDACBCDCCBDABACACBDABCDBDCDBCA';
+  function omr(filled) {
+    var s = '<svg viewBox="0 0 200 250" preserveAspectRatio="xMidYMid meet" aria-hidden="true"><rect x="1" y="1" width="198" height="248" rx="4" fill="#FFF7FB" stroke="#F9A8D4"/>' +
+      '<rect x="8" y="8" width="184" height="16" rx="2" fill="#FCE7F3"/><text x="100" y="19" text-anchor="middle" font-family="Inter,Arial" font-size="8" font-weight="700" fill="#9D174D" letter-spacing=".6">OMR ANSWER SHEET</text>';
+    for (var t = 0; t < 22; t++) s += '<rect x="3" y="' + (32 + t * 9.6) + '" width="4" height="2.6" fill="#111827"/>';
+    s += '<text x="13" y="34" font-family="Inter,Arial" font-size="5" font-weight="700" fill="#9D174D">ROLL NO.</text><rect x="12" y="37" width="46" height="9" fill="#fff" stroke="#F9A8D4" stroke-width=".6"/>';
+    var roll = [1, 2, 0, 4, 2, 3];
+    for (var c = 0; c < 6; c++) {
+      if (filled) s += '<text x="' + (16 + c * 7.4) + '" y="44" font-family="Inter,Arial" font-size="6" font-weight="700" fill="#1F2937" text-anchor="middle">' + roll[c] + '</text>';
+      for (var r = 0; r < 10; r++) {
+        var on = filled && roll[c] === r;
+        s += '<circle cx="' + (16 + c * 7.4) + '" cy="' + (52 + r * 7.2) + '" r="2.5" fill="' + (on ? '#1F2937' : '#fff') + '" stroke="#F472B6" stroke-width=".5"/>';
+      }
+    }
+    for (var k = 0; k < 30; k++) {
+      var col = Math.floor(k / 10), row = k % 10, x0 = 70 + col * 44, y = 42 + row * 19.5;
+      s += '<text x="' + x0 + '" y="' + (y + 2) + '" font-family="Inter,Arial" font-size="5.5" font-weight="700" fill="#9D174D" text-anchor="end">' + (k + 1) + '</text>';
+      for (var o = 0; o < 4; o++) {
+        var cx = x0 + 6 + o * 8.6, L = 'ABCD'.charAt(o), pick = filled && L === ANS.charAt(k);
+        s += '<circle cx="' + cx + '" cy="' + y + '" r="3" fill="' + (pick ? '#1F2937' : '#fff') + '" stroke="#F472B6" stroke-width=".55"/>';
+        if (!pick) s += '<text x="' + cx + '" y="' + (y + 1.3) + '" font-family="Inter,Arial" font-size="3.6" fill="#F472B6" text-anchor="middle">' + L + '</text>';
+        else s += '<circle class="om" style="transition-delay:' + (k * 0.035).toFixed(2) + 's" cx="' + cx + '" cy="' + y + '" r="4.6" fill="none" stroke="' + (ANS.charAt(k) === KEY.charAt(k) ? '#10B981' : '#EF4444') + '" stroke-width="1.3"/>';
+      }
+    }
+    return s + '<rect x="12" y="236" width="60" height="6" fill="#fff" stroke="#F9A8D4" stroke-width=".5"/><text x="14" y="240.6" font-family="Inter,Arial" font-size="3.6" fill="#9D174D">Candidate signature</text></svg>';
+  }
+  root.querySelectorAll('.omr-gen').forEach(function (e) { e.innerHTML = omr(e.hasAttribute('data-fill')); });
+  root.querySelectorAll('.kg').forEach(function (e) {
+    var h = ''; for (var k = 0; k < 24; k++) h += '<span>' + (k + 1) + '<b>' + KEY.charAt(k) + '</b></span>'; e.innerHTML = h;
+  });
+
   /* ---------- helpers ---------- */
   var idx = 0, timers = [], running = false, clockT = null, inst = false;
   function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
@@ -135,19 +167,23 @@
   var S = [
     { who: 't', t: 'Class, syllabus & questions', l: 'Create exam · step <b>1</b> of 3', dur: 5200,
       c: 'Pick the class and chapters. ekRank picks 30 questions by weightage, including past JEE papers.',
-      a: [[300, function () { click('c12'); }], [800, function () { click('sa'); }], [1250, function () { click('sc'); }],
-          [1350, function () { count('.xs-count .cnt'); }], [1800, function () { click('t1'); }], [2200, function () { click('t2'); }],
-          [2600, function () { click('t3'); }], [2750, function () { add('[data-act="ch1"]', 'on'); count('.qpanel .cnt'); add('.qmini'); add('.dmix'); }],
+      a: [[300, function () { click('c12'); }], [800, function () { click('sa'); }], [1150, function () { click('sb'); }], [1500, function () { click('sc'); }],
+          [1600, function () { count('.xs-count .cnt'); }], [2000, function () { click('t1'); }], [2350, function () { click('t2'); }],
+          [2700, function () { click('t3'); }], [2850, function () { add('[data-act="ch1"]', 'on'); count('.qpanel .cnt'); add('.qmini'); add('.dmix'); }],
           [4200, function () { click('n1'); }]] },
-    { who: 't', t: 'Pattern & proctoring', l: 'Create exam · step <b>2</b> of 3', dur: 5300,
-      c: 'Set the JEE Main pattern and switch on proctoring: webcam and face check, locked full-screen, auto-submit after 3 violations.',
-      a: [[300, function () { click('jee'); }], [1000, function () { click('p1'); }], [1550, function () { click('p2'); }],
-          [2100, function () { click('p3'); }], [2650, function () { click('p4'); }], [3150, function () { click('m1'); }], [3550, function () { click('m2'); }], [4300, function () { click('n2'); }]] },
+    { who: 't', t: 'Online or offline (OMR)', l: 'Create exam · step <b>2</b> of 3', dur: 5900,
+      c: 'Choose how each section writes: online with webcam and full-screen proctoring, or offline on OMR sheets.',
+      a: [[300, function () { click('jee'); }], [950, function () { click('m1'); }], [1550, function () { click('m2'); }],
+          [2200, function () { click('p1'); }], [2700, function () { click('p2'); }], [3200, function () { click('p3'); }], [3700, function () { click('p4'); }], [4800, function () { click('n2'); }]] },
     { who: 't', t: 'Approve & publish', l: 'Create exam · step <b>3</b> of 3', dur: 5600,
-      c: 'HOD and principal approve. Publish, and every student gets the exam on their phone.',
+      c: 'HOD and principal approve. Publish, and online students get the exam on their phone.',
       a: [[300, function () { add('[data-act="a1"]', 'on'); }], [800, function () { add('[data-act="a2"]', 'on'); }], [1300, function () { add('[data-act="a3"]', 'on'); }],
           [2000, function () { click('pub'); }], [2750, function () { add('[data-sc="3"] .toast'); }],
-          [2950, function () { who('s'); }], [3150, function () { add('[data-sc="1,2,3"] .notif'); buzz(); }]] },
+          [2950, function () { who('s'); }], [3150, function () { add('[data-sc="1,2,3,4"] .notif'); buzz(); }]] },
+    { who: 't', t: 'Question paper & OMR sheets', l: 'Offline exam · print', dur: 5400,
+      c: 'For the offline section, the question paper, NTA-style OMR sheets and answer key are generated, ready to print.',
+      pre: function () { add('[data-sc="1,2,3,4"] .notif'); },
+      a: [[250, function () { add('.doc'); }], [3200, function () { click('print'); }], [3800, function () { add('[data-sc="4"] .toast'); }]] },
     { who: 's', t: 'Live exam · proctoring', l: 'During the exam', dur: 5300,
       c: 'Before the exam starts, the student’s camera, face and full-screen are checked.',
       pre: function () { txt('.clock,.ex-tm', '45:00'); },
@@ -178,14 +214,19 @@
     { who: 't', t: 'Review flags', l: 'Proctoring review', dur: 5600,
       c: 'Review every flag with webcam snapshots. After 3 violations the exam submits itself.',
       a: [[250, function () { add('.snaps figure'); }], [1300, function () { var s = q('.snaps .bad .snap'); moveTo(s); if (s) later(function () { s.classList.add('zoom'); }, 650); }],
-          [3000, function () { click('mark'); }], [3550, function () { add('[data-sc="7"] .toast'); }]] },
+          [3000, function () { click('mark'); }], [3550, function () { add('[data-sc="8"] .toast'); }]] },
+    { who: 't', t: 'Scan & evaluate OMR sheets', l: 'Offline exam · after the paper', dur: 6600,
+      c: 'After the paper exam, scan the filled OMR sheets and upload them. ekRank reads every bubble and marks each sheet.',
+      a: [[300, function () { click('up'); }], [1900, function () { var sh = q('.sheet'); sh.style.setProperty('--bh', sh.offsetHeight + 'px'); sh.classList.add('scan'); }],
+          [3200, function () { add('.sheet'); count('.read .cnt'); qa('.mrow').forEach(function (m, k) { if (inst) m.classList.add('show'); else later(function () { m.classList.add('show'); }, k * 220); }); }],
+          [5000, function () { add('[data-sc="9"] .toast'); }]] },
     { who: 's', t: 'Class results', l: 'After the exam', dur: 5200,
-      c: 'Results the moment it ends: score, class rank and why each mark was lost.',
-      a: [[300, function () { count('[data-sc="8"] .cnt'); }], [450, function () { add('.hist'); add('.xdna'); }]] },
+      c: 'Results the moment it ends, online and OMR students in one ranking: score, rank and why each mark was lost.',
+      a: [[300, function () { count('[data-sc="10"] .cnt'); }], [450, function () { add('.hist'); add('.xdna'); }]] },
     { who: 't', t: 'What to teach next', l: 'After the exam', dur: 5800,
       c: 'See what to teach next and send practice in one tap. It lands in each student’s plan.',
-      a: [[250, function () { add('.nx'); }], [2100, function () { click('practice'); }], [2650, function () { add('[data-sc="9"] .toast'); }],
-          [3000, function () { who('s'); }], [3200, function () { add('[data-sc="9"] .notif'); buzz(); }]] }
+      a: [[250, function () { add('.nx'); }], [2100, function () { click('practice'); }], [2650, function () { add('[data-sc="11"] .toast'); }],
+          [3000, function () { who('s'); }], [3200, function () { add('[data-sc="11"] .notif'); buzz(); }]] }
   ];
 
   var DYN = ['on', 'show', 'scan', 'red', 'amb', 'asub', 'nof', 'hot', 'zoom', 'nx15', 'out'];
@@ -229,7 +270,8 @@
     });
   });
 
-  if (reduce) { show(5, true); return; }
+  if (reduce) { show(6, true); return; }
+  show(0, true); // static first frame until the hero scrolls into view
   // play only while the hero is on screen and the tab is visible
   var visible = true;
   if ('IntersectionObserver' in window) {
