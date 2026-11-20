@@ -562,7 +562,7 @@ h1.h1-roles{font-size:clamp(32px,4.4vw,62px);line-height:1.08;letter-spacing:-.0
 @media (max-width:640px){
   .tour-player{aspect-ratio:4/5}
   .tour-play{align-items:center;padding-bottom:0}
-  .tour-ch{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;margin:16px -24px 0;padding:0 24px;scrollbar-width:none}
+  .tour-ch{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;margin:16px -18px 0;padding:0 18px;scrollbar-width:none}
   .tour-ch::-webkit-scrollbar{display:none}
   .tour-ch button{flex:none}
   .tp-chip{font-size:15px;padding:8px 18px 8px 8px}.tp-dot{width:42px;height:42px}
@@ -672,50 +672,220 @@ h1.h1-roles{font-size:clamp(32px,4.4vw,62px);line-height:1.08;letter-spacing:-.0
     </div>
 
     <div class="stage xf-stage rv">
-      <div class="xf" id="xf" data-s="1" role="img" aria-label="Animated walkthrough: a teacher creates a JEE chapter test in ekRank — picks class and chapters, gets questions by weightage, sets the JEE Main format, schedules it online and on OMR paper, gets it approved and published, watches it live, and sees results with what to teach next.">
+      <div class="xf" id="xf" data-s="1" data-who="t" role="img" aria-label="Animated walkthrough of a proctored JEE exam in ekRank. The teacher creates the paper, turns on webcam and full-screen proctoring, gets it approved and publishes it. The student is notified, passes a camera and face check, and writes in a locked full-screen window. Leaving the screen or looking away is flagged: the student is warned and the teacher is alerted with webcam snapshots, and the exam auto-submits after three violations. Results reach the student with their mistakes explained, and the teacher sees what to reteach and sends practice to the students who need it.">
         <ol class="xf-steps" aria-hidden="true">
-          <li data-go="1"><b>1</b>Syllabus</li>
-          <li data-go="2"><b>2</b>Questions</li>
-          <li data-go="3"><b>3</b>Format</li>
-          <li data-go="4"><b>4</b>Schedule</li>
-          <li data-go="5"><b>5</b>Approve &amp; publish</li>
-          <li data-go="6"><b>6</b>Live exam</li>
-          <li data-go="7"><b>7</b>Results</li>
+          <li data-go="1" class="r-t"><b>1</b>Create</li>
+          <li data-go="2" class="r-t"><b>2</b>Proctoring</li>
+          <li data-go="3" class="r-t"><b>3</b>Publish</li>
+          <li data-go="4" class="r-s"><b>4</b>Camera check</li>
+          <li data-go="5" class="r-s"><b>5</b>Writing</li>
+          <li data-go="6" class="r-s"><b>6</b>Violations</li>
+          <li data-go="7" class="r-t"><b>7</b>Review flags</li>
+          <li data-go="8" class="r-s"><b>8</b>Results</li>
+          <li data-go="9" class="r-t"><b>9</b>Reteach</li>
         </ol>
 
-        <div class="xf-win" aria-hidden="true">
-          <div class="xf-bar">
-            <span class="xf-dots"><i></i><i></i><i></i></span>
-            <span class="xf-url">app.ekrank.com / create-exam</span>
-            <span class="xf-who">Ms. Priya Menon · Physics</span>
-          </div>
-          <div class="xf-body">
-            <aside class="xf-side">
-              <img src="assets/ekrank-logo-v6-1024w.png" alt="" class="xf-logo">
-              <span>Home</span><span class="on">Create exam</span><span>Exams</span><span>Students</span><span>Insights</span>
-              <div class="xf-cls"><small>MY CLASSES</small><em>Class 11 · A, B</em><em>Class 12 · A, C</em></div>
-            </aside>
-            <div class="xf-main">
-              <div class="xf-head">
-                <div><small class="xf-stepl">Step <b class="xf-n">1</b> of 5</small><h6 class="xf-title">Class &amp; syllabus</h6></div>
-                <div class="xf-prog"><i></i></div>
-              </div>
+        <div class="xf-duo" aria-hidden="true">
+          <!-- ================= TEACHER LAPTOP ================= -->
+          <div class="xf-dev xf-lap">
+            <span class="xf-role role-t">Teacher App · laptop</span>
+            <div class="xf-win">
+              <div class="xf-bar"><span class="xf-dots"><i></i><i></i><i></i></span><span class="xf-url">app.ekrank.com / teacher</span><span class="xf-who">Ms. Priya Menon · Physics</span></div>
+              <div class="xf-main">
+                <div class="xf-head">
+                  <div><small class="xf-stepl">Create exam · step 1 of 3</small><h6 class="xf-title">Class, syllabus &amp; questions</h6></div>
+                  <img src="assets/ekrank-logo-v6-1024w.png" alt="" class="xf-logo">
+                </div>
 
-              <!-- 1 · Class & syllabus -->
-              <section class="xs s1">
-                <div class="xs-row">
-                  <span class="chip" data-act="c11">Class 11</span><span class="chip" data-act="c12">Class 12</span>
-                  <span class="chip sq" data-act="sa">A</span><span class="chip sq" data-act="sc">C</span>
-                  <span class="muted xs-count"><b class="cnt" data-to="82">0</b> students</span>
-                </div>
-                <div class="tbl">
-                  <div class="tr th"><span>Chapter / topic</span><span>Weightage</span><span>Questions</span><span>PYQs</span></div>
-                  <div class="tr ch"><span><i class="cb" data-act="ch1"></i>Electrostatics</span><span><em class="w lo">Low</em></span><span><em class="pill-n">115</em></span><span><em class="pill-n v">99</em></span></div>
-                  <div class="tr tp"><span><i class="cb" data-act="t1"></i>Coulomb's law</span><span><em class="w md">Medium</em></span><span><em class="pill-n">32</em></span><span><em class="pill-n v">33</em></span></div>
-                  <div class="tr tp"><span><i class="cb" data-act="t2"></i>Gauss's law</span><span><em class="w md">Medium</em></span><span><em class="pill-n">44</em></span><span><em class="pill-n v">24</em></span></div>
-                  <div class="tr tp"><span><i class="cb" data-act="t3"></i>Potential &amp; capacitance</span><span><em class="w hi">High</em></span><span><em class="pill-n">18</em></span><span><em class="pill-n v">9</em></span></div>
-                  <div class="tr ch"><span><i class="cb"></i>Current Electricity</span><span><em class="w md">Medium</em></span><span><em class="pill-n">131</em></span><span><em class="pill-n v">114</em></span></div>
-                </div>
+                <!-- L1 create -->
+                <section class="xs" data-sc="1">
+                  <div class="xs-row"><span class="chip" data-act="c12">Class 12</span><span class="chip sq" data-act="sa">A</span><span class="chip sq" data-act="sc">C</span><span class="muted xs-count"><b class="cnt" data-to="82">0</b> students</span></div>
+                  <div class="two">
+                    <div class="tbl">
+                      <div class="tr ch"><span><i class="cb" data-act="ch1"></i>Electrostatics</span><em class="w lo">Low</em></div>
+                      <div class="tr tp"><span><i class="cb" data-act="t1"></i>Coulomb's law</span><em class="w md">Medium</em></div>
+                      <div class="tr tp"><span><i class="cb" data-act="t2"></i>Gauss's law</span><em class="w md">Medium</em></div>
+                      <div class="tr tp"><span><i class="cb" data-act="t3"></i>Potential &amp; capacitance</span><em class="w hi">High</em></div>
+                      <div class="dmix"><small>Difficulty mix</small><span><i class="e" style="--w:30%"></i><i class="m" style="--w:50%"></i><i class="h" style="--w:20%"></i></span><em><b>30%</b> easy · <b>50%</b> medium · <b>20%</b> hard</em></div>
+                    </div>
+                    <div class="qpanel">
+                      <div class="big"><b class="cnt" data-to="30">0</b> questions picked</div>
+                      <div class="muted">by weightage · <b class="cnt" data-to="12">0</b> past-paper (PYQ)</div>
+                      <div class="qmini"><span class="t v">PYQ · JEE Main 2024</span>Two charges +q and −q are d apart…</div>
+                      <div class="qmini"><span class="t">Concept · Easy</span>Flux through a cube with q at its centre…</div>
+                      <div class="qmini"><span class="t">Numerical · Medium</span>2 µF and 3 µF in series…</div>
+                    </div>
+                  </div>
+                  <div class="xs-foot"><span class="muted">From 43,000+ expert-curated questions</span><span class="btn-mini" data-act="n1">Next →</span></div>
+                </section>
+
+                <!-- L2 format + proctoring -->
+                <section class="xs" data-sc="2">
+                  <div class="two">
+                    <div class="fbox"><small>Pattern &amp; marking</small>
+                      <div class="xs-row"><span class="chip" data-act="jee">JEE Main</span><span class="chip">JEE Adv</span><span class="chip">NEET</span></div>
+                      <div class="mk"><span><b class="g">+4</b> correct</span><span><b class="r">−1</b> wrong</span></div>
+                      <div class="mk"><span><b>45</b> min</span><span><b>Thu 22 Oct</b> 11:00 am</span></div>
+                      <small class="sm2">Conduct</small>
+                      <div class="xs-row"><span class="chip" data-act="m1">Online · app &amp; web</span><span class="chip" data-act="m2">OMR paper</span></div>
+                      <small class="sm2">Students</small>
+                      <div class="mk"><span><b>82</b> in Class 12 A, C</span></div>
+                    </div>
+                    <div class="fbox"><small>Proctoring</small>
+                      <div class="ptg" data-act="p1"><span class="tg"><i></i></span><div><b>Webcam &amp; face check</b><small>Camera on throughout the exam</small></div></div>
+                      <div class="ptg" data-act="p2"><span class="tg"><i></i></span><div><b>Lock full-screen</b><small>Leaving the exam screen is recorded</small></div></div>
+                      <div class="ptg" data-act="p3"><span class="tg"><i></i></span><div><b>Auto-submit after 3 violations</b><small>Student is warned each time</small></div></div>
+                      <div class="ptg" data-act="p4"><span class="tg"><i></i></span><div><b>Save webcam snapshots</b><small>For the teacher to review</small></div></div>
+                    </div>
+                  </div>
+                  <div class="xs-foot"><span class="tag">30 questions · 120 marks</span><span class="btn-mini" data-act="n2">Review →</span></div>
+                </section>
+
+                <!-- L3 approve + publish -->
+                <section class="xs" data-sc="3">
+                  <div class="two">
+                    <div class="rsum"><small>Electrostatics · Chapter test</small><b>Class 12 · Sections A, C</b>
+                      <ul><li>30 questions · JEE Main · +4 / −1</li><li>Thu 22 Oct · 11:00 am · 45 min</li><li>Proctored: webcam, full-screen</li><li>Also on OMR paper</li></ul>
+                      <div class="prt"><small>Ready to print</small><span class="pack"><em>Question paper</em><em>Answer key</em><em>OMR sheets</em></span></div></div>
+                    <div class="appr"><small>Approval</small>
+                      <div class="ap" data-act="a1"><span class="av av-t">PM</span><div><b>Priya Menon</b><small>Teacher · set the paper</small></div><em>✓</em></div>
+                      <div class="ap" data-act="a2"><span class="av av-h">RK</span><div><b>R. Kumar</b><small>HOD · reviewed quality</small></div><em>✓</em></div>
+                      <div class="ap" data-act="a3"><span class="av av-p">SA</span><div><b>S. Anand</b><small>Principal · approved</small></div><em>✓</em></div>
+                    </div>
+                  </div>
+                  <div class="xs-foot"><span class="muted">Students are notified on the ekRank app</span><span class="btn-mini pub" data-act="pub">Publish</span></div>
+                  <div class="toast">✓ Published · 82 students notified</div>
+                </section>
+
+                <!-- L4–L6 live proctoring monitor -->
+                <section class="xs xmon" data-sc="4,5,6">
+                  <div class="lv-top"><span class="xlive">LIVE</span><b>Electrostatics Chapter Test</b><span class="tmr">Ends in <b class="clock">44:52</b></span></div>
+                  <div class="lv-n">
+                    <div><small>Joined</small><b><span class="cnt jn" data-to="82">0</span><em>/82</em></b></div>
+                    <div><small>Writing</small><b class="cnt wr" data-to="79">0</b></div>
+                    <div><small>Flags</small><b class="fl">0</b></div>
+                  </div>
+                  <div class="mon-body">
+                    <div class="tiles">
+                      <div class="tile" data-av="1"><span class="nm">Aarav S.</span><em class="st">Writing</em></div>
+                      <div class="tile" data-av="2"><span class="nm">Diya R.</span><em class="st">Writing</em></div>
+                      <div class="tile" data-av="3"><span class="nm">Kabir M.</span><em class="st">Writing</em></div>
+                      <div class="tile" data-av="4"><span class="nm">Anika P.</span><em class="st">Writing</em></div>
+                      <div class="tile" data-av="5"><span class="nm">Rohan K.</span><em class="st">Writing</em></div>
+                      <div class="tile" data-av="6"><span class="nm">Sara J.</span><em class="st">Writing</em></div>
+                      <div class="tile" data-av="7"><span class="nm">Vikram T.</span><em class="st">Writing</em></div>
+                      <div class="tile" data-av="8"><span class="nm">Meera N.</span><em class="st">Writing</em></div>
+                    </div>
+                    <div class="feed">
+                      <small>Alerts</small>
+                      <div class="fi fa3"><i class="r"></i><span><b>Rohan K.</b> auto-submitted after 3 violations</span></div>
+                      <div class="fi fa2"><i class="a"></i><span><b>Diya R.</b> two faces on camera</span></div>
+                      <div class="fi fa4"><i class="a"></i><span><b>Aarav S.</b> face not visible</span></div>
+                      <div class="fi fa1"><i class="r"></i><span><b>Aarav S.</b> left the exam screen <em>1 of 3</em></span></div>
+                      <p class="feed-ok">No alerts yet</p>
+                    </div>
+                  </div>
+                </section>
+
+                <!-- L7 review flags -->
+                <section class="xs" data-sc="7">
+                  <div class="rv-head"><span class="rv-av" data-av="2"></span><div><b>Diya R.</b><small>Class 12 · A · 2 flags</small></div><span class="tag am">Needs review</span></div>
+                  <div class="snaps">
+                    <figure><span class="snap" data-av="2"></span><figcaption>11:04 · face check ✓</figcaption></figure>
+                    <figure class="bad"><span class="snap two" data-av="2"></span><figcaption>11:09 · two faces</figcaption></figure>
+                    <figure class="warn"><span class="snap away" data-av="2"></span><figcaption>11:15 · looked away 8 s</figcaption></figure>
+                  </div>
+                  <div class="tl"><span><i class="g"></i>11:02 joined · face matched</span><span><i class="r"></i>11:09 two faces on camera</span><span><i class="a"></i>11:15 looked away 8 s</span><span><i class="g"></i>11:45 submitted</span></div>
+                  <div class="rv-foot"><span class="muted">Rohan K. was auto-submitted after 3 violations</span><span class="btn-ol" data-act="allow">Allow</span><span class="btn-mini" data-act="mark">Mark for review</span></div>
+                  <div class="toast">✓ Marked for review · principal notified</div>
+                </section>
+
+                <!-- L8 results -->
+                <section class="xs" data-sc="8">
+                  <div class="rs-k"><span><b><span class="cnt" data-to="61">0</span>%</b><small>class average</small></span><span><b>82/82</b><small>attended</small></span><span><b class="g">79</b><small>clean attempts</small></span><span><b class="am">3</b><small>flagged</small></span></div>
+                  <div class="rs-card grow"><small>How the class scored</small>
+                    <div class="hist"><i style="--h:18%" class="r"></i><i style="--h:30%" class="r"></i><i style="--h:46%" class="a"></i><i style="--h:72%" class="a"></i><i style="--h:94%" class="g"></i><i style="--h:80%" class="g"></i><i style="--h:52%" class="g"></i><i style="--h:26%" class="g"></i></div>
+                    <div class="hl"><span>0</span><span>15</span><span>30</span><span>45</span><span>60</span><span>75</span><span>90</span><span>105+</span></div>
+                  </div>
+                </section>
+
+                <!-- L9 reteach -->
+                <section class="xs" data-sc="9">
+                  <div class="rs-card grow"><small>What to teach next</small>
+                    <div class="nx"><div><b>Force on a conductor</b><u><i style="--w:31%" class="r"></i></u><small>31% got it right</small></div><span>Reteach</span></div>
+                    <div class="nx"><div><b>Gauss's law</b><u><i style="--w:48%" class="a"></i></u><small>48% got it right · 23 students</small></div><span class="alt" data-act="practice">Give practice</span></div>
+                    <div class="nx"><div><b>Electric potential</b><u><i style="--w:57%" class="a"></i></u><small>57% got it right</small></div><span class="alt">Give practice</span></div>
+                    <div class="nx"><div><b>Capacitors in series</b><u><i style="--w:64%" class="a"></i></u><small>64% got it right</small></div><span class="alt">Give practice</span></div>
+                  </div>
+                  <div class="toast">✓ Practice sent to 23 students</div>
+                </section>
+              </div>
+              <svg class="xf-cur" width="26" height="26" viewBox="0 0 24 24"><path d="M4 2l15 9.2-6.6 1.6 3.8 7.2-2.9 1.5-3.8-7.2L4.6 19z" fill="#0F172A" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+
+          <!-- ================= STUDENT PHONE ================= -->
+          <div class="xf-dev xf-ph">
+            <span class="xf-role role-s">Student App · phone</span>
+            <div class="xp">
+              <div class="xp-notch"></div>
+              <div class="xp-scr">
+                <!-- P1–P2 lock screen / P3 notification -->
+                <section class="ps lock" data-sc="1,2,3">
+                  <div class="lk-time">10:58</div><div class="lk-date">Thursday, 22 October</div>
+                  <div class="notif"><img src="assets/ekrank-mark-v6-32.png" alt=""><div><b>ekRank · New exam</b><span>Electrostatics Chapter Test · today 11:00 am · 45 min · proctored</span></div></div>
+                </section>
+
+                <!-- P4 system check -->
+                <section class="ps" data-sc="4">
+                  <b class="ph-t">Before you start</b>
+                  <div class="cam"><span class="cam-av" data-av="1"></span><i class="fr"></i><span class="cam-ok">Face detected</span></div>
+                  <ul class="chk"><li>Camera on</li><li>Face matched</li><li>Full-screen locked</li><li>Network stable</li></ul>
+                  <span class="ph-btn" data-act="start">Start exam</span>
+                </section>
+
+                <!-- P5–P6 exam -->
+                <section class="ps exam" data-sc="5,6">
+                  <div class="ex-top"><span>Chapter test</span><span class="ex-tm">42:18</span></div>
+                  <div class="pip" data-av="1"><i></i></div>
+                  <div class="ex-q"><b>Q 14</b> / 30<span>Physics</span></div>
+                  <div class="ex-bar"><i></i></div>
+                  <p class="ex-txt">A charge q is placed at the centre of a cube. The flux through one face is</p>
+                  <div class="opt">A  q/ε₀</div><div class="opt" data-act="ob">B  q/6ε₀</div><div class="opt">C  q/4ε₀</div><div class="opt">D  zero</div>
+                  <div class="pal"><i class="d"></i><i class="d"></i><i class="d"></i><i class="m"></i><i class="c"></i><i></i><i></i><i></i><i></i><i></i></div>
+                  <span class="ph-btn" data-act="save">Save &amp; next</span>
+                  <div class="warn-m"><div><span class="wi">!</span><b>You left the exam screen</b><small>Warning 1 of 3. The exam submits automatically after 3.</small><span class="ph-btn" data-act="back">Return to exam</span></div></div>
+                </section>
+
+                <!-- P7 submitted -->
+                <section class="ps center" data-sc="7">
+                  <span class="big-ok">✓</span><b class="ph-t">Exam submitted</b><small class="ph-s">Answers saved. Results at 11:46 am</small>
+                </section>
+
+                <!-- P8 result -->
+                <section class="ps" data-sc="8">
+                  <b class="ph-t">Your result</b>
+                  <div class="res"><b><span class="cnt" data-to="84">0</span><em>/120</em></b><span>Rank in class <b>6</b> of 82</span></div>
+                  <small class="ph-k">Why you lost marks</small>
+                  <div class="xdna"><span><i style="--w:34%"></i>Concept 34%</span><span><i style="--w:27%" class="d2"></i>Application 27%</span><span><i style="--w:18%" class="d3"></i>Calculation 18%</span></div>
+                  <small class="ph-s">Weakest: Gauss's law</small>
+                  <span class="ph-btn">See solutions</span>
+                </section>
+
+                <!-- P9 practice lands -->
+                <section class="ps lock" data-sc="9">
+                  <div class="lk-time">4:30</div><div class="lk-date">Thursday, 22 October</div>
+                  <div class="notif"><img src="assets/ekrank-mark-v6-32.png" alt=""><div><b>ekRank · Practice from Ms. Priya</b><span>Gauss's law · 10 questions · added to today's plan</span></div></div>
+                </section>
+              </div>
+              <span class="xp-tap"></span>
+            </div>
+          </div>
+        </div>
+        <p class="xf-cap" aria-hidden="true"><b class="xf-capn">1</b><span class="xf-capr">Teacher</span><span class="xf-capt"></span></p>
+      </div>
+    </div>
+  </div>
                 <div class="xs-foot"><span class="tag ok pop">1 chapter · 3 topics picked</span><span class="btn-mini" data-act="next1">Next →</span></div>
               </section>
 
@@ -985,7 +1155,7 @@ h1.h1-roles{font-size:clamp(32px,4.4vw,62px);line-height:1.08;letter-spacing:-.0
     <div class="bento rv">
       <div class="b w dark hasart"><div class="bt"><span class="ico">Q</span><h4>An expert-curated Question Bank of 43,000+ questions</h4><p>Built for JEE and NEET by subject experts: more than 43,000 questions across Physics, Chemistry, Mathematics and Biology, tagged by chapter, topic, concept and difficulty, with previous-year questions marked.</p><div class="mini"><span>Single correct</span><span>Multiple correct</span><span>Numerical</span><span>Your own questions</span></div></div><div class="ba"><div class="a-tags"><span>Physics</span><span>Electrostatics</span><span class="py">Previous-year</span></div><b class="a-q">Charges +q and −q are a distance d apart. The electric field at the midpoint is</b><div class="a-opt"><i>A</i>zero</div><div class="a-opt"><i>B</i>4kq / d²</div><div class="a-opt ok"><i>C</i>8kq / d²</div><div class="a-opt"><i>D</i>kq / d²</div><small class="a-foot">Concept: Superposition of fields · Medium</small></div></div>
       <div class="b w hasart"><div class="bt"><span class="ico">⇄</span><h4>Online and offline, in one result</h4><p>Run the exam on screen, or print packs with a QR code on every sheet. Scan the answer sheets and ekRank reads them and matches each to the right student.</p><div class="mini"><span>Secure test runner</span><span>OMR sheets</span><span>Scan upload</span></div></div><div class="ba"><div class="a-two"><div class="a-dev"><div class="a-scr"><u></u><u></u><u class="s"></u></div><small>On screen</small></div><div class="a-dev"><div class="a-sheet"><span class="a-qr"></span><u></u><u></u><u class="s"></u></div><small>On paper</small></div></div><div class="a-arrow">↓ one results list</div><div class="a-res"><span>Aarav S.</span><em>online</em><b>78%</b></div><div class="a-res"><span>Diya R.</span><em class="pp">paper</em><b>64%</b></div><div class="a-res"><span>Kabir M.</span><em class="pp">paper</em><b>51%</b></div></div></div>
-      <div class="b w hasart"><div class="bt"><span class="ico">◉</span><h4>Online proctored exams</h4><p>Students take the exam in a locked, full-screen test window. Every time someone leaves the screen it is recorded, and the teacher watches the whole class live while the exam runs.</p><div class="mini"><span>Full-screen test window</span><span>Left-the-screen flags</span><span>Live monitor</span></div></div><div class="ba"><div class="a-bar"><span><i></i>Full-screen test</span><b>28:39 left</b></div><div class="a-flag"><i>!</i><div><b>Left the screen · 2 times</b><small>Rohan K. · flagged for the teacher</small></div></div><div class="a-seats"><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="a"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="r"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="a"></i><i class="g"></i><i class="g"></i><i class="g"></i></div><small class="a-foot">42 joined · live for the teacher</small></div></div>
+      <div class="b w hasart"><div class="bt"><span class="ico">◉</span><h4>Online proctored exams</h4><p>A camera and face check before the exam, then a locked full-screen window. Leaving the screen, looking away or a second face is flagged: the student is warned, the teacher is alerted live, and the exam submits itself after the set number of violations.</p><div class="mini"><span>Webcam &amp; face check</span><span>Violation alerts</span><span>Auto-submit</span><span>Webcam snapshots</span></div></div><div class="ba"><div class="a-bar"><span><i></i>Full-screen test</span><b>28:39 left</b></div><div class="a-flag"><i>!</i><div><b>Left the screen · 2 times</b><small>Rohan K. · flagged for the teacher</small></div></div><div class="a-seats"><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="a"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="r"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="g"></i><i class="a"></i><i class="g"></i><i class="g"></i><i class="g"></i></div><small class="a-foot">42 joined · live for the teacher</small></div></div>
       <div class="b w dark hasart"><div class="bt"><span class="ico">▣</span><h4>Real exam patterns: JEE Main, JEE Advanced and NEET</h4><p>Every paper follows the official NTA and JEE Advanced pattern: the same sections, question types and marking, negative marks included. On screen it feels like the real computer-based test; on paper students fill an NTA-style OMR sheet.</p><div class="mini"><span>JEE Main</span><span>JEE Advanced</span><span>NEET</span><span>NTA-style OMR sheet</span></div></div><div class="ba"><div class="a-omr-h"><b>OMR ANSWER SHEET</b><span>Roll 2 4 0 1 7</span></div><div class="a-row"><span>1</span><i class="">A</i><i class="">B</i><i class="on">C</i><i class="">D</i></div><div class="a-row"><span>2</span><i class="on">A</i><i class="">B</i><i class="">C</i><i class="">D</i></div><div class="a-row"><span>3</span><i class="">A</i><i class="">B</i><i class="">C</i><i class="on">D</i></div><div class="a-row"><span>4</span><i class="">A</i><i class="on">B</i><i class="">C</i><i class="">D</i></div><div class="a-row"><span>5</span><i class="">A</i><i class="">B</i><i class="on">C</i><i class="">D</i></div><div class="a-tags"><span>+4 correct</span><span>−1 wrong</span><span class="py">NTA pattern</span></div></div></div>
       <div class="b"><span class="ico">◎</span><h4>Live exam monitor</h4><p>See who has joined, who has left the screen and how the class is moving, while the exam is running.</p></div>
       <div class="b"><span class="ico">✓</span><h4>Paper approvals</h4><p>Papers move from teacher to HOD to principal on the route you set. Nothing reaches students unapproved.</p></div>
@@ -1078,7 +1248,7 @@ h1.h1-roles{font-size:clamp(32px,4.4vw,62px);line-height:1.08;letter-spacing:-.0
       <details><summary>Who sets up our institution?</summary><p>We do. You share your branches, sections, teachers and students in a simple sheet, and our team loads and checks it with you.</p></details>
       <details><summary>Can we keep running exams on paper?</summary><p>Yes. Print the paper and answer sheets from ekRank, conduct the exam as usual, then scan and upload the sheets. Results appear alongside your online exams.</p></details>
       <details><summary>Where do the questions come from?</summary><p>From the ekRank Question Bank of more than 43,000 expert-curated JEE and NEET questions, and from questions your own teachers add.</p></details>
-      <details><summary>Are online exams proctored?</summary><p>Yes. Students take the exam in a full-screen test window. ekRank records every time a student leaves the screen, and the teacher can watch the whole class live while the exam runs.</p></details>
+      <details><summary>Are online exams proctored?</summary><p>Yes. Before starting, each student passes a camera and face check. The exam runs in a locked full-screen window with the webcam on. If a student leaves the screen, moves out of the camera or a second face appears, they are warned and the teacher is alerted live. You choose how many violations are allowed before the exam submits itself, and webcam snapshots are saved so you can review every flag afterwards.</p></details>
       <details><summary>Do the exams follow the real JEE and NEET pattern?</summary><p>Yes. Papers follow the official JEE Main, JEE Advanced and NEET patterns, with the same sections, question types and marking. For paper exams, students fill an NTA-style OMR sheet that ekRank reads after you scan it.</p></details>
       <details><summary>Which devices are supported?</summary><p>ekRank runs in the browser on laptops, tablets and phones. No installation is needed to get started.</p></details>
       <details><summary>Can an individual student use ekRank?</summary><p>Yes. Any JEE or NEET aspirant can start a 30-day free trial of the Student App.</p></details>

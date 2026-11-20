@@ -1,63 +1,113 @@
-/* ekRank hero: animated create-exam flow. No dependencies. */
+/* ekRank hero: proctored exam flow, teacher laptop + student phone. No dependencies. */
 (function () {
   'use strict';
   var root = document.getElementById('xf');
   if (!root) return;
   var win = root.querySelector('.xf-win'), cur = root.querySelector('.xf-cur');
+  var phone = root.querySelector('.xp'), tapEl = root.querySelector('.xp-tap');
   var steps = [].slice.call(root.querySelectorAll('.xf-steps li'));
-  var scenes = [].slice.call(root.querySelectorAll('.xs'));
-  var title = root.querySelector('.xf-title'), stepl = root.querySelector('.xf-stepl'), prog = root.querySelector('.xf-prog i');
-  var cap = root.querySelector('.xf-cap'), capN = root.querySelector('.xf-capn'), capT = root.querySelector('.xf-capt');
+  var secs = [].slice.call(root.querySelectorAll('[data-sc]'));
+  var title = root.querySelector('.xf-title'), stepl = root.querySelector('.xf-stepl');
+  var cap = root.querySelector('.xf-cap'), capN = root.querySelector('.xf-capn'), capR = root.querySelector('.xf-capr'), capT = root.querySelector('.xf-capt');
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var S = [
-    { t: 'Class & syllabus', l: 'Step <b>1</b> of 5', p: 20, dur: 4300,
-      c: 'Pick the class and chapters. Weightage and past-paper counts are shown for every topic.',
-      a: [[300, 'click', 'c12'], [900, 'click', 'sa'], [1400, 'click', 'sc'], [1500, 'count'], [1950, 'click', 't1'], [2400, 'click', 't2'], [2850, 'click', 't3'], [2950, 'on', 'ch1'], [3050, 'show', '.pop'], [3600, 'click', 'next1']] },
-    { t: 'Questions', l: 'Step <b>2</b> of 5', p: 40, dur: 4300,
-      c: 'ekRank picks 30 questions by weightage from 43,000+, including previous-year questions. Swap any in one click.',
-      a: [[250, 'count'], [2300, 'click', 'swap'], [3650, 'click', 'next2']] },
-    { t: 'Format', l: 'Step <b>3</b> of 5', p: 60, dur: 3500,
-      c: 'Choose the pattern. JEE Main marking and the difficulty mix are set for you.',
-      a: [[500, 'click', 'jee'], [2800, 'click', 'next3']] },
-    { t: 'Schedule', l: 'Step <b>4</b> of 5', p: 80, dur: 3600,
-      c: 'Schedule it online with proctoring, on OMR paper, or both.',
-      a: [[600, 'click', 'online'], [1400, 'click', 'omr'], [2900, 'click', 'next4']] },
-    { t: 'Approve & publish', l: 'Step <b>5</b> of 5', p: 100, dur: 4800,
-      c: 'HOD and principal approve. Publish, and every student is notified — paper, answer key and OMR sheets are ready to print.',
-      a: [[450, 'on', 'a1'], [1100, 'on', 'a2'], [1750, 'on', 'a3'], [2600, 'click', 'pub'], [3200, 'show', '.toast']] },
-    { t: 'Live exam', l: 'During the exam', p: 100, dur: 4300,
-      c: 'Watch it live: who joined, who is writing, who submitted — and anyone who left the screen.',
-      a: [[200, 'count'], [200, 'clock'], [900, 'move', '.lv-n > div:nth-child(3)'], [2100, 'show', '.lv-alert']] },
-    { t: 'Results', l: 'After the exam', p: 100, dur: 5600,
-      c: 'Results the moment it closes, with exactly what to teach next. Send practice in one tap.',
-      a: [[300, 'count'], [2900, 'click', 'practice'], [3450, 'show', '.toast']] }
-  ];
+  /* ---------- illustrated webcam avatars (no photos) ---------- */
+  var P = [null,
+    { bg: '#DBEAFE', sk: '#C68642', hr: '#1F2937', sh: '#93C5FD', l: 0 },
+    { bg: '#FCE7F3', sk: '#A86B3C', hr: '#111827', sh: '#F9A8D4', l: 1 },
+    { bg: '#E0E7FF', sk: '#E0AC69', hr: '#3F2A1D', sh: '#A5B4FC', l: 0 },
+    { bg: '#DCFCE7', sk: '#8D5524', hr: '#111827', sh: '#86EFAC', l: 1 },
+    { bg: '#FEF3C7', sk: '#D2A06D', hr: '#1F2937', sh: '#FCD34D', l: 0 },
+    { bg: '#EDE9FE', sk: '#B5774B', hr: '#111827', sh: '#C4B5FD', l: 1 },
+    { bg: '#CFFAFE', sk: '#7B4B2A', hr: '#0F172A', sh: '#67E8F9', l: 0 },
+    { bg: '#FFE4E6', sk: '#E8B98A', hr: '#2B1B12', sh: '#FDA4AF', l: 1 }];
+  function person(p, tx, ty, k, look) {
+    var f = look ? ' transform="translate(6 1)"' : '';
+    return '<g class="hd" transform="translate(' + tx + ' ' + ty + ') scale(' + k + ')">' +
+      '<path d="M16 104C18 80 33 71 50 71s32 9 34 33z" fill="' + p.sh + '"/>' +
+      '<rect x="44" y="58" width="12" height="15" rx="4" fill="' + p.sk + '"/>' +
+      (p.l ? '<path d="M33 42c0-14 8-20 17-20s17 6 17 20v24h-7V44H40v22h-7z" fill="' + p.hr + '"/>' : '') +
+      '<ellipse cx="50" cy="46" rx="15" ry="18" fill="' + p.sk + '"/>' +
+      '<path d="M35 44c-1-15 8-21 15-21 8 0 16 5 15 21-3-8-8-11-15-11s-12 3-15 11z" fill="' + p.hr + '"/><g' + f + '>' +
+      '<circle cx="44" cy="47" r="1.7" fill="#1F2937"/><circle cx="56" cy="47" r="1.7" fill="#1F2937"/>' +
+      '<path d="M45.5 55.5q4.5 3 9 0" fill="none" stroke="#7C2D12" stroke-width="1.6" stroke-linecap="round"/></g></g>';
+  }
+  function avatar(n, mode) {
+    var p = P[n] || P[1], s = '<svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' +
+      '<rect width="100" height="100" fill="' + p.bg + '"/><rect x="0" y="0" width="100" height="30" fill="#fff" opacity=".35"/>' +
+      '<rect x="70" y="8" width="18" height="22" rx="2" fill="#fff" opacity=".55"/>';
+    if (mode === 'two') s += person(P[6], -20, 8, 0.82) + person(p, 12, 4, 0.92);
+    else if (mode === 'away') s += person(p, 3, 2, 1, true);
+    else s += person(p, 0, 0, 1);
+    return s + '</svg>';
+  }
+  root.querySelectorAll('[data-av]').forEach(function (e) {
+    var c = e.classList, mode = c.contains('two') ? 'two' : c.contains('away') ? 'away' : '';
+    e.insertAdjacentHTML('afterbegin', avatar(+e.getAttribute('data-av'), mode));
+    if (mode === 'two') e.insertAdjacentHTML('beforeend', '<i class="bx" style="left:4%;top:24%;width:40%;height:48%"></i><i class="bx" style="left:47%;top:16%;width:42%;height:52%"></i>');
+  });
 
-  var idx = 0, timers = [], running = false, clockT = null;
+  /* ---------- helpers ---------- */
+  var idx = 0, timers = [], running = false, clockT = null, inst = false;
   function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
   function clear() { timers.forEach(clearTimeout); timers = []; clearInterval(clockT); }
+  function q(s) { return root.querySelector(s); }
+  function qa(s) { return [].slice.call(root.querySelectorAll(s)); }
+  function add(s, c) { qa(s).forEach(function (e) { e.classList.add(c || 'show'); }); }
+  function rm(s, c) { qa(s).forEach(function (e) { e.classList.remove(c || 'show'); }); }
+  function txt(s, t) { qa(s).forEach(function (e) { e.textContent = t; }); }
+  function act(k) { return q('[data-act="' + k + '"]'); }
+  var PRESS = /btn-mini|ph-btn/;
 
-  function el(sc, key) { return sc.querySelector('[data-act="' + key + '"]'); }
-  function moveTo(target) {
-    if (!target || !cur) return;
-    var w = win.getBoundingClientRect(), r = target.getBoundingClientRect();
-    if (!r.width) return;
-    var x = r.left - w.left + Math.min(r.width * 0.55, r.width - 8), y = r.top - w.top + r.height * 0.62;
-    cur.style.transform = 'translate(' + x + 'px,' + y + 'px)';
-    return { x: x, y: y };
+  function pos(box, t) {
+    var w = box.getBoundingClientRect(), r = t.getBoundingClientRect();
+    if (!r.width || !w.width) return null;
+    return { x: r.left - w.left + Math.min(r.width * 0.55, r.width - 8), y: r.top - w.top + r.height * 0.6 };
   }
-  function ring(p) {
-    if (!p) return;
-    var d = document.createElement('span'); d.className = 'xf-ring';
-    d.style.left = p.x + 'px'; d.style.top = p.y + 'px';
-    win.appendChild(d); setTimeout(function () { d.remove(); }, 600);
-    cur.classList.remove('click'); void cur.offsetWidth; cur.classList.add('click');
+  function moveTo(t) {
+    if (inst || !t || !cur) return null;
+    var p = pos(win, t); if (!p) return null;
+    cur.style.transform = 'translate(' + p.x + 'px,' + p.y + 'px)';
+    return p;
   }
-  function count(sc, instant) {
-    sc.querySelectorAll('.cnt').forEach(function (n) {
+  function press(t) {
+    t.classList.add('on');
+    if (PRESS.test(t.className)) later(function () { t.classList.remove('on'); }, 220);
+  }
+  function click(k) {
+    var t = act(k); if (!t) return;
+    if (inst) { if (!PRESS.test(t.className)) t.classList.add('on'); return; }
+    var p = moveTo(t);
+    later(function () {
+      press(t);
+      if (!p) return;
+      var d = document.createElement('span'); d.className = 'xf-ring';
+      d.style.left = p.x + 'px'; d.style.top = p.y + 'px';
+      win.appendChild(d); setTimeout(function () { d.remove(); }, 600);
+      cur.classList.remove('click'); void cur.offsetWidth; cur.classList.add('click');
+    }, 650);
+  }
+  function tap(k, after) {
+    var t = act(k); if (!t) return;
+    if (inst) { if (!PRESS.test(t.className)) t.classList.add('on'); if (after) after(); return; }
+    var w = phone.getBoundingClientRect(), r = t.getBoundingClientRect();
+    if (r.width && w.width) {
+      var x = r.left - w.left + r.width * 0.5, y = r.top - w.top + r.height * 0.55;
+      tapEl.style.transform = 'translate(' + x + 'px,' + (y + 40) + 'px)';
+      tapEl.classList.add('vis');
+      later(function () { tapEl.style.transform = 'translate(' + x + 'px,' + y + 'px)'; }, 30);
+    }
+    later(function () {
+      press(t);
+      tapEl.classList.remove('press'); void tapEl.offsetWidth; tapEl.classList.add('press');
+      later(function () { tapEl.classList.remove('vis'); }, 420);
+      if (after) later(after, 250);
+    }, 600);
+  }
+  function count(s) {
+    qa(s).forEach(function (n) {
       var to = +n.getAttribute('data-to');
-      if (instant || reduce) { n.textContent = to; return; }
+      if (inst || reduce) { n.textContent = to; return; }
       var t0 = performance.now(), d = 1300;
       (function f(now) {
         var k = Math.min(1, (now - t0) / d), e = 1 - Math.pow(1 - k, 3);
@@ -66,65 +116,120 @@
       })(t0);
     });
   }
-  function clock(sc) {
-    var c = sc.querySelector('.clock'), s = 28 * 60 + 41;
-    if (!c) return;
-    c.textContent = '28:41';
-    clockT = setInterval(function () { s--; c.textContent = Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2); }, 1000);
+  function fmt(s) { return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2); }
+  function clock(s) {
+    txt('.clock,.ex-tm', fmt(s));
+    if (inst) return;
+    clockT = setInterval(function () { s--; txt('.clock,.ex-tm', fmt(s)); }, 1000);
   }
-  function reset(sc) {
-    sc.querySelectorAll('.on').forEach(function (e) { if (e.hasAttribute('data-act')) e.classList.remove('on'); });
-    sc.querySelectorAll('.show').forEach(function (e) { e.classList.remove('show'); });
-    sc.querySelectorAll('.cnt').forEach(function (n) { n.textContent = '0'; });
-  }
-  function act(sc, a, instant) {
-    var type = a[1], key = a[2];
-    if (type === 'count') return count(sc, instant);
-    if (type === 'clock') return instant ? null : clock(sc);
-    if (type === 'move') { if (!instant) moveTo(sc.querySelector(key)); return; }
-    if (type === 'show') { sc.querySelectorAll(key).forEach(function (e) { e.classList.add('show'); }); return; }
-    var t = el(sc, key); if (!t) return;
-    if (type === 'on' || instant) { if (!/^next|^pub$/.test(key)) t.classList.add('on'); return; }
-    // click: travel, then press
-    var p = moveTo(t);
-    later(function () {
-      ring(p); t.classList.add('on');
-      if (/^next|^pub$/.test(key)) later(function () { t.classList.remove('on'); }, 220);
-    }, 650);
+  function tile(n, cls, label) { var t = q('.tile:nth-child(' + n + ')'); if (!t) return; t.classList.add(cls); t.querySelector('.st').textContent = label; }
+  function flags(n) { var f = q('.lv-n .fl'); f.textContent = n; f.classList.toggle('hot', n > 0); }
+  function park() { if (cur.style.transform) return; var r = win.getBoundingClientRect(); if (r.width) cur.style.transform = 'translate(' + r.width * 0.72 + 'px,' + r.height * 0.7 + 'px)'; }
+  function who(x) { root.setAttribute('data-who', x); park(); }
+  function buzz() { if (inst) return; phone.classList.remove('buzz'); void phone.offsetWidth; phone.classList.add('buzz'); }
+  function tilesIn() {
+    qa('.tile').forEach(function (t, k) { if (inst) t.classList.add('show'); else later(function () { t.classList.add('show'); }, k * 170); });
   }
 
+  /* ---------- scenes ---------- */
+  var S = [
+    { who: 't', t: 'Class, syllabus & questions', l: 'Create exam · step <b>1</b> of 3', dur: 5200,
+      c: 'Pick the class and chapters. ekRank picks 30 questions by weightage, including past JEE papers.',
+      a: [[300, function () { click('c12'); }], [800, function () { click('sa'); }], [1250, function () { click('sc'); }],
+          [1350, function () { count('.xs-count .cnt'); }], [1800, function () { click('t1'); }], [2200, function () { click('t2'); }],
+          [2600, function () { click('t3'); }], [2750, function () { add('[data-act="ch1"]', 'on'); count('.qpanel .cnt'); add('.qmini'); add('.dmix'); }],
+          [4200, function () { click('n1'); }]] },
+    { who: 't', t: 'Pattern & proctoring', l: 'Create exam · step <b>2</b> of 3', dur: 5300,
+      c: 'Set the JEE Main pattern and switch on proctoring: webcam and face check, locked full-screen, auto-submit after 3 violations.',
+      a: [[300, function () { click('jee'); }], [1000, function () { click('p1'); }], [1550, function () { click('p2'); }],
+          [2100, function () { click('p3'); }], [2650, function () { click('p4'); }], [3150, function () { click('m1'); }], [3550, function () { click('m2'); }], [4300, function () { click('n2'); }]] },
+    { who: 't', t: 'Approve & publish', l: 'Create exam · step <b>3</b> of 3', dur: 5600,
+      c: 'HOD and principal approve. Publish, and every student gets the exam on their phone.',
+      a: [[300, function () { add('[data-act="a1"]', 'on'); }], [800, function () { add('[data-act="a2"]', 'on'); }], [1300, function () { add('[data-act="a3"]', 'on'); }],
+          [2000, function () { click('pub'); }], [2750, function () { add('[data-sc="3"] .toast'); }],
+          [2950, function () { who('s'); }], [3150, function () { add('[data-sc="1,2,3"] .notif'); buzz(); }]] },
+    { who: 's', t: 'Live exam · proctoring', l: 'During the exam', dur: 5300,
+      c: 'Before the exam starts, the student’s camera, face and full-screen are checked.',
+      pre: function () { txt('.clock,.ex-tm', '45:00'); },
+      a: [[200, function () { count('.lv-n .jn'); tilesIn(); }], [450, function () { add('.cam', 'scan'); }],
+          [800, function () { add('.chk li:nth-child(1)'); }], [1200, function () { add('.chk li:nth-child(2)'); }],
+          [1600, function () { add('.chk li:nth-child(3)'); }], [2000, function () { add('.chk li:nth-child(4)'); }],
+          [3000, function () { tap('start'); }]] },
+    { who: 's', t: 'Live exam · proctoring', l: 'During the exam', dur: 5200,
+      c: 'The student writes in a locked full-screen window while the teacher watches the class live.',
+      pre: function () { txt('.lv-n .jn', '82'); var k = inst; inst = true; tilesIn(); inst = k; },
+      a: [[0, function () { clock(42 * 60 + 18); }], [200, function () { count('.lv-n .wr'); }],
+          [900, function () { moveTo(q('.tile:nth-child(3)')); }],
+          [1400, function () { tap('ob'); }],
+          [2700, function () { tap('save', function () { rm('[data-act="ob"]', 'on'); txt('.ex-q b', 'Q 15'); add('.ex-bar', 'nx15'); }); }]] },
+    { who: 's', t: 'Live exam · proctoring', l: 'During the exam', dur: 6800,
+      c: 'Leave the exam screen or move out of the camera and it is flagged. The student is warned, the teacher alerted.',
+      pre: function () { txt('.lv-n .jn', '82'); txt('.lv-n .wr', '79'); var k = inst; inst = true; tilesIn(); inst = k; txt('.ex-q b', 'Q 15'); add('.ex-bar', 'nx15'); },
+      a: [[0, function () { clock(38 * 60 + 5); }],
+          [400, function () { add('.ps.exam', 'out'); }],
+          [1100, function () { rm('.ps.exam', 'out'); add('.warn-m'); tile(1, 'red', 'Left screen 1/3'); add('.fa1'); flags(1); }],
+          [1500, function () { moveTo(q('.fa1')); }],
+          [2300, function () { tap('back', function () { rm('.warn-m'); }); }],
+          [3100, function () { who('t'); }], [3300, function () { add('.pip', 'nof'); tile(1, 'red', 'No face'); add('.fa4'); }],
+          [3800, function () { tile(2, 'amb', '2 faces'); add('.fa2'); flags(2); }],
+          [4600, function () { rm('.pip', 'nof'); tile(1, 'red', 'Warned 1/3'); }],
+          [5000, function () { tile(5, 'asub', 'Auto-submitted'); add('.fa3'); flags(3); }],
+          [5300, function () { moveTo(q('.fa3')); }]] },
+    { who: 't', t: 'Review flags', l: 'Proctoring review', dur: 5600,
+      c: 'Review every flag with webcam snapshots. After 3 violations the exam submits itself.',
+      a: [[250, function () { add('.snaps figure'); }], [1300, function () { var s = q('.snaps .bad .snap'); moveTo(s); if (s) later(function () { s.classList.add('zoom'); }, 650); }],
+          [3000, function () { click('mark'); }], [3550, function () { add('[data-sc="7"] .toast'); }]] },
+    { who: 's', t: 'Class results', l: 'After the exam', dur: 5200,
+      c: 'Results the moment it ends: score, class rank and why each mark was lost.',
+      a: [[300, function () { count('[data-sc="8"] .cnt'); }], [450, function () { add('.hist'); add('.xdna'); }]] },
+    { who: 't', t: 'What to teach next', l: 'After the exam', dur: 5800,
+      c: 'See what to teach next and send practice in one tap. It lands in each student’s plan.',
+      a: [[250, function () { add('.nx'); }], [2100, function () { click('practice'); }], [2650, function () { add('[data-sc="9"] .toast'); }],
+          [3000, function () { who('s'); }], [3200, function () { add('[data-sc="9"] .notif'); buzz(); }]] }
+  ];
+
+  var DYN = ['on', 'show', 'scan', 'red', 'amb', 'asub', 'nof', 'hot', 'zoom', 'nx15', 'out'];
+  function reset() {
+    DYN.forEach(function (c) { qa('.' + c).forEach(function (e) { if (e.closest('.xf-steps') || e === cap) return; e.classList.remove(c); }); });
+    txt('.tile .st', 'Writing'); txt('.lv-n .fl', '0'); txt('.ex-q b', 'Q 14');
+    qa('.cnt').forEach(function (n) { n.textContent = '0'; });
+    if (tapEl) tapEl.classList.remove('vis', 'press');
+  }
   function head(i) {
     var s = S[i];
-    title.textContent = s.t; stepl.innerHTML = s.l; prog.style.width = s.p + '%';
+    title.textContent = s.t; stepl.innerHTML = s.l;
+    root.setAttribute('data-who', s.who); root.setAttribute('data-s', i + 1); park();
     steps.forEach(function (li, k) { li.classList.toggle('cur', k === i); li.classList.toggle('done', k < i); });
     var ol = steps[0].parentNode;
     if (ol.scrollWidth > ol.clientWidth + 4) ol.scrollTo({ left: Math.max(0, steps[i].offsetLeft - steps[0].offsetLeft - 40), behavior: reduce ? 'auto' : 'smooth' });
     cap.classList.add('fade');
-    setTimeout(function () { capN.textContent = i + 1; capT.textContent = s.c; cap.classList.remove('fade'); }, reduce ? 0 : 250);
-    root.setAttribute('data-s', i + 1);
+    setTimeout(function () { capN.textContent = i + 1; capR.textContent = s.who === 't' ? 'Teacher' : 'Student'; capR.classList.toggle('s', s.who === 's'); capT.textContent = s.c; cap.classList.remove('fade'); }, reduce ? 0 : 250);
   }
-
   function show(i, instant) {
-    clear(); idx = i;
-    scenes.forEach(function (sc, k) { sc.classList.toggle('cur', k === i); });
-    var sc = scenes[i]; reset(sc); head(i);
-    if (instant) { S[i].a.forEach(function (a) { act(sc, a, true); }); return; }
-    S[i].a.forEach(function (a) { later(function () { if (running) act(sc, a, false); }, a[0] + 450); });
-    later(function () { if (running) show((i + 1) % S.length, false); }, S[i].dur + 450);
+    clear(); idx = i; inst = !!instant;
+    secs.forEach(function (sc) { sc.classList.toggle('cur', sc.getAttribute('data-sc').split(',').indexOf(String(i + 1)) > -1); });
+    reset(); head(i);
+    if (S[i].pre) S[i].pre();
+    if (instant) { S[i].a.forEach(function (a) { a[1](); }); inst = false; return; }
+    S[i].a.forEach(function (a) { later(function () { if (running) a[1](); }, a[0] + 350); });
+    later(function () { if (running) show((i + 1) % S.length, false); }, S[i].dur + 350);
   }
 
-  function start() { if (running || reduce) return; running = true; show(idx, false); }
+  function start() {
+    if (running || reduce) return; running = true;
+    show(idx, false);
+  }
   function stop() { running = false; clear(); }
 
   steps.forEach(function (li, k) {
     li.addEventListener('click', function () {
+      (window.dataLayer = window.dataLayer || []).push({ event: 'hero_flow_step', step: k + 1 });
       if (reduce) { show(k, true); return; }
       running = true; show(k, false);
-      (window.dataLayer = window.dataLayer || []).push({ event: 'hero_flow_step', step: k + 1 });
     });
   });
 
-  if (reduce) { show(4, true); return; }
+  if (reduce) { show(5, true); return; }
   // play only while the hero is on screen and the tab is visible
   var visible = true;
   if ('IntersectionObserver' in window) {
