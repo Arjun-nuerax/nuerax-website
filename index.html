@@ -8,7 +8,7 @@
 <meta name="description" content="Set JEE and NEET papers in minutes, run proctored online or NTA-pattern OMR exams, and see exactly what each class and student should work on next.">
 <meta name="theme-color" content="#070B18">
 <meta property="og:site_name" content="ekRank">
-<meta property="og:title" content="ekRank — Every test should tell you what to teach next.">
+<meta property="og:title" content="ekRank — All-in-one: results for owners, control for principals, time for teachers, a roadmap for students.">
 <meta property="og:description" content="Set JEE and NEET papers in minutes, run proctored online or NTA-pattern OMR exams, and see exactly what each class and student should work on next.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://ekrank.com/">
@@ -16,7 +16,7 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ekRank — Every test should tell you what to teach next.">
+<meta name="twitter:title" content="ekRank — All-in-one: results for owners, control for principals, time for teachers, a roadmap for students.">
 <meta name="twitter:description" content="Set JEE and NEET papers in minutes, run proctored online or NTA-pattern OMR exams, and see exactly what each class and student should work on next.">
 <meta name="twitter:image" content="https://ekrank.com/assets/og-image.png">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/ekrank-mark-v6-32.png">
@@ -529,6 +529,11 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
 .foot-apps{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;margin:28px 0 0;padding:22px 0 0;border-top:1px solid var(--line)}
 .foot-apps>b{font:600 15px/1.3 var(--head);color:var(--ink)}
 @media (max-width:520px){.foot-apps{justify-content:flex-start}.stores{width:100%}.store-badge{flex:1 1 150px;justify-content:center}}
+/* Hero headline: one benefit per role, coloured like the characters */
+.hero-top:has(.h1-roles){max-width:1040px}
+h1.h1-roles{font-size:clamp(30px,4.6vw,60px);line-height:1.12;letter-spacing:-.025em;text-wrap:balance}
+.h1-kick{display:block;margin-bottom:6px}
+.k-o{color:#A78BFA}.k-p{color:#22D3EE}.k-t{color:#F472B6}.k-s{color:#34D399}
 /* Hero tour button */
 .btn-tour{gap:12px;padding-left:10px}
 .bt-dot{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--grad2);color:#fff;box-shadow:0 6px 16px rgba(124,58,237,.45);transition:transform .2s}
@@ -655,7 +660,7 @@ footer{border-top:1px solid var(--line);padding:44px 0 56px}
   <div class="wrap">
     <div class="hero-top rv">
       <span class="pill"><b>IIT-JEE · NEET</b><span class="pill-long">Integrated assessment &amp; student performance platform</span><span class="pill-short">Assessment &amp; performance</span></span>
-      <h1>Every test should tell you <span class="gt">what to teach next.</span></h1>
+      <h1 class="h1-roles"><span class="gt h1-kick">All-in-one.</span> ekRank gives owners <span class="k-o">results</span>, principals <span class="k-p">control</span>, teachers <span class="k-t">time</span> and students <span class="k-s">a roadmap</span>.</h1>
       <p class="sub"><span class="sub-who">For Class 11–12 schools, junior colleges and coaching institutes. </span>Set JEE Main, JEE Advanced and NEET papers in minutes, run them as proctored online exams or NTA-pattern OMR exams, and see exactly what each class and student should work on next.</p>
       <div class="cta">
         <a class="btn btn-p" href="#demo">Book a free demo →</a>
